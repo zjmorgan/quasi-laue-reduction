@@ -55,7 +55,7 @@ class QuasiLaue:
 
         self.pixelation = {
             "CG4D": (5000, 1800),
-            "IMAGINE": (512, 512),
+            "IMAGINE": (512 // 4, 512 // 4),
             "MANDI": (256, 256),
         }
 

@@ -1,0 +1,17 @@
+name: quasi-laue-reduction
+channels:
+  - conda-forge
+  - mantid
+dependencies:
+  - python >=3.11
+  - mantid
+  - numpy
+  - scipy >=1.15
+  - scikit-image
+  - h5py
+  - matplotlib
+  - pillow
+  - pytest
+  - pip
+  - pip:
+    - -e .
