@@ -1,0 +1,39 @@
+[project]
+name = "quasi-laue-reduction"
+description = "Quasi-Laue single-crystal neutron diffraction reduction with Mantid"
+version = "0.1.0"
+requires-python = ">=3.11"
+dependencies = [
+  "numpy",
+  "scipy >= 1.15",
+  "scikit-image",
+  "h5py",
+  "matplotlib",
+  "pillow",
+]
+license = { text = "GPL-3.0" }
+authors = [{ name = "Zachary Morgan", email = "zjmorgan@mtu.edu" }]
+
+[project.scripts]
+quasi-laue = "quasi_laue_reduction.cli:main"
+
+[project.optional-dependencies]
+# Mantid is distributed through conda; see environment.yml.
+test = ["pytest"]
+
+[build-system]
+requires = ["setuptools>=64"]
+build-backend = "setuptools.build_meta"
+
+[tool.setuptools.packages.find]
+where = ["src"]
+
+[tool.setuptools.package-data]
+"quasi_laue_reduction" = ["instruments/*.xml"]
+
+[tool.pytest.ini_options]
+testpaths = ["tests"]
+markers = [
+  "mantid: requires Mantid",
+  "slow: long-running (full-size differential evolution)",
+]
