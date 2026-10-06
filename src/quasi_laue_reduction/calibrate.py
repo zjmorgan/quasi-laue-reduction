@@ -54,7 +54,10 @@ STAGES = [
     ("E +panel in-plane shifts", {"yaw": True, "vertical": True, "horizontal": True, "inplane": True}),
 ]
 
-FLAGS = ("yaw", "vertical", "horizontal", "inplane")
+FLAGS = ("yaw", "vertical", "horizontal", "inplane", "ratios")
+
+# Fixed-geometry validation: goniometer only, then + cell length ratios.
+VALIDATION_STAGES = [("A goniometer", {}), ("R +cell ratios b/a, c/a", {"ratios": True})]
 
 
 # -----------------------------------------------------------------------------
@@ -203,8 +206,8 @@ class SeriesCalibration:
 
     # ------------------------------------------------------------- orientation
 
-    def _opt(self, U=None):
-        o = CalculateUB(*self.cell)
+    def _opt(self, U=None, cell=None):
+        o = CalculateUB(*(self.cell if cell is None else cell))
         o._hkl_filter = centering_filter(self.centering)
         if U is not None:
             o.x = o.orientation_parameters_from_U(U)
@@ -280,7 +283,7 @@ class SeriesCalibration:
 
     def layout(self, cfg):
         n0 = 6 + len(self.runs)
-        sizes = {"yaw": 1, "vertical": 2, "horizontal": 4, "inplane": 2 * len(self.fine_banks)}
+        sizes = {"yaw": 1, "vertical": 2, "horizontal": 4, "inplane": 2 * len(self.fine_banks), "ratios": 2}
         out, i = {}, n0
         for name in FLAGS:
             if cfg.get(name):
@@ -303,7 +306,13 @@ class SeriesCalibration:
             "vy": get("vertical", (2,)),
             "hxz": get("horizontal", (2, 2)),
             "pin": get("inplane", (nf, 2)),
+            "cell": self._cell_from(get("ratios", (2,))),
         }
+
+    def _cell_from(self, dratio):
+        """Cell with b/a and c/a changed by ``dratio`` (a fixed)."""
+        a, b, c, al, be, ga = self.cell
+        return (a, a * (b / a + dratio[0]), a * (c / a + dratio[1]), al, be, ga)
 
     def extend(self, p, cfg_old, cfg_new):
         """Parameter vector for cfg_new carrying over values from cfg_old."""
@@ -339,7 +348,7 @@ class SeriesCalibration:
 
     def assign(self, k, q, cfg, tol):
         r = self.runs[k]
-        o = self._opt(self.model_U(q, k))
+        o = self._opt(self.model_U(q, k), q["cell"])
         kf = kf_ki(self.corrected_xyz(r["xyz"], r["bank"], q, cfg))
         _, _, hkl, _ = o.index(kf, self.band, angle_tol=np.deg2rad(tol))
         return hkl
@@ -362,7 +371,8 @@ class SeriesCalibration:
         d /= np.linalg.norm(d, axis=1)[:, None]
         ang = data["axis0"] - self.runs[0]["axis0"] + q["dw"][data["k"]]
         Rk = Rotation.from_rotvec(np.deg2rad(ang)[:, None] * q["axis"]).as_matrix()
-        g = np.einsum("nij,jk,nk->ni", Rk, q["U0"] @ self.B, data["hkl"])
+        B = CalculateUB(*q["cell"]).reciprocal_lattice_B() if cfg.get("ratios") else self.B
+        g = np.einsum("nij,jk,nk->ni", Rk, q["U0"] @ B, data["hkl"])
         g /= np.linalg.norm(g, axis=1)[:, None]
         res = [(d - g).ravel()]
         if priors:
@@ -476,6 +486,11 @@ class SeriesCalibration:
             out["array_horizontal_xz_mm"] = val("horizontal", 1e3)
         if cfg.get("inplane"):
             out["panel_inplane_mm_rms"] = float(np.sqrt(np.mean(p[lay["inplane"]] ** 2)) * 1e3)
+        if cfg.get("ratios"):
+            a, b, c = self.cell[:3]
+            sl = lay["ratios"]
+            out["b_over_a"] = f"{b / a + p[sl][0]:.5f} +- {sd[sl][0]:.5f}"
+            out["c_over_a"] = f"{c / a + p[sl][1]:.5f} +- {sd[sl][1]:.5f}"
         return out
 
     # ------------------------------------------------------------- output

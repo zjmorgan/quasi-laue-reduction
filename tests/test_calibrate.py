@@ -104,3 +104,27 @@ def test_series_calibration_recovers_array_misplacement():
     assert np.allclose(q["hxz"], TRUE["hxz"], atol=0.0003)
     assert D["test"]["fraction"] > 0.9
     assert report[0]["test"]["fraction"] < D["test"]["fraction"]
+
+
+def test_cell_ratio_refinement_with_true_geometry():
+    """With the true geometry, refined ratios stay cubic and indexing is complete."""
+    from quasi_laue_reduction.calibrate import VALIDATION_STAGES
+
+    runs, positions, axis = simulate_series()
+    c, b, u = nominal_frames()
+    ct, bt, ut = true_frames(c, b, u)
+    # re-express the observed positions in the true geometry
+    for r in runs:
+        j = r["bank"]
+        s = np.sum((r["xyz"] - c[j]) * b[j], axis=1)
+        v = np.sum((r["xyz"] - c[j]) * u[j], axis=1)
+        r["xyz"] = ct[j] + s[:, None] * bt[j] + v[:, None] * ut[j]
+
+    cal = SeriesCalibration(runs, positions_grid(ct, bt, ut), CELL, "I", band=BAND, tols=(0.5, 0.35))
+    cal.axis = axis
+    report = cal.fit(stages=VALIDATION_STAGES)
+    R = report[-1]
+    ba = float(R["b_over_a"].split()[0])
+    ca = float(R["c_over_a"].split()[0])
+    assert ba == pytest.approx(1.0, abs=2e-3) and ca == pytest.approx(1.0, abs=2e-3)
+    assert R["test"]["fraction"] > 0.95
