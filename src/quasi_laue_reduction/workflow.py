@@ -5,6 +5,7 @@ and integration on a one-bin detector workspace.
 
 import numpy as np
 
+from mantid.kernel import config
 from mantid.simpleapi import (
     AddPeak,
     CloneWorkspace,
@@ -54,6 +55,10 @@ class QuasiLaue:
     """
 
     def __init__(self, ws, pixel_shape=None):
+        # Peak vectors are kf - ki; Mantid's default (Inelastic) is ki - kf,
+        # which would make every HKL the Friedel mate of ours.
+        config["Q.convention"] = "Crystallography"
+
         self.ws = ws
         self.peaks_ws = ws + "_peaks"
 
@@ -150,6 +155,8 @@ class QuasiLaue:
         self.kf_ki_dir = scattering_directions(xyz) @ self.R
         self.heights = heights
         self.coords = coords
+        self.found_coords = coords.copy()
+        self.indexed_mask = None
 
         if mtd.doesExist(self.peaks_ws):
             DeleteWorkspace(self.peaks_ws)
@@ -260,9 +267,18 @@ class QuasiLaue:
 
         _, num, hkl, lamda = opt.index(self.kf_ki_dir, wavelength)
 
-        print("Indexed {} of {} peaks".format(num, len(self.kf_ki_dir)))
+        sig = prim.significance
+        self.significance = sig
+        print(
+            "Indexed {} of {} peaks (random orientations: {:.1f} expected; log10 p = {:.1f}; {} restart(s))".format(
+                num, len(self.kf_ki_dir), sig["expected_chance"], sig["log10_p_value"], len(prim.restarts)
+            )
+        )
 
         UB = opt.orientation_U(*opt.x) @ opt.reciprocal_lattice_B()
+
+        if len(self.found_coords) == len(hkl):
+            self.indexed_mask = np.any(np.asarray(hkl) != 0, axis=1)
 
         self._apply_indexing(UB, hkl, lamda)
 
@@ -310,6 +326,61 @@ class QuasiLaue:
             WavelengthMin=wavelength[0],
             WavelengthMax=wavelength[1],
             ReflectionCondition=REFLECTION_CONDITIONS[centering],
+        )
+
+    def predicted_pixels(self, wavelength, centering=None, d_min=2.0):
+        """
+        (bank, i, j) of reflections predicted by the current UB, without
+        replacing the peaks workspace.
+        """
+        centering = self.centering if centering is None else centering
+
+        PredictPeaks(
+            InputWorkspace=self.peaks_ws,
+            OutputWorkspace=self.ws + "_predicted",
+            MinDSpacing=d_min,
+            MaxDSpacing="inf",
+            WavelengthMin=wavelength[0],
+            WavelengthMax=wavelength[1],
+            ReflectionCondition=REFLECTION_CONDITIONS[centering],
+        )
+
+        ids = [p.getDetectorID() for p in mtd[self.ws + "_predicted"]]
+        ids = [i for i in ids if i >= 0]
+
+        return np.column_stack(self.pixels_of_detectors(ids)) if ids else np.zeros((0, 3))
+
+    def plot_peaks_pdf(self, filename, predicted=None, n_sigma=8.0, title=None):
+        """
+        One PDF page per panel with the found peaks (green if indexed, red
+        otherwise), optional predicted reflections and the significance map.
+
+        Parameters
+        ----------
+        filename : str
+            Output PDF.
+        predicted : ndarray, optional
+            (bank, i, j), e.g. from :meth:`predicted_pixels`.
+        n_sigma : float, optional
+            Threshold contour on the significance map.
+        title : str, optional
+            Page title prefix; defaults to the workspace name.
+
+        Returns
+        -------
+        n_pages : int
+            Number of pages written.
+        """
+        from .plots import plot_peak_panels
+
+        return plot_peak_panels(
+            self.extract_images(),
+            self.found_coords,
+            filename,
+            indexed=self.indexed_mask,
+            predicted=predicted,
+            n_sigma=n_sigma,
+            title=self.ws if title is None else title,
         )
 
     # -------------------------------------------------------------------------

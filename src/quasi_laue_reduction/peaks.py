@@ -58,6 +58,47 @@ def find_peaks_global(images, max_peaks=50, min_pix=10, perc=99.9):
     return coords, heights
 
 
+def background_residual(image, background_size=15, border=8, mask=None):
+    """
+    Background-subtracted image and its robust noise level.
+
+    Masked pixels (by default those with exactly zero counts, as written for
+    masked detector edges) are filled with their nearest unmasked value
+    before the median filter, so the background next to a masked region is
+    not dragged towards zero; their residual is set to zero.
+
+    Returns
+    -------
+    residual : ndarray
+        Image minus median-filter background.
+    sigma : float
+        Robust (MAD) noise of the residual over unmasked pixels inside the
+        border.
+    mask : ndarray
+        Boolean mask of masked pixels.
+    """
+    image = np.asarray(image, dtype=float)
+
+    if mask is None:
+        mask = image == 0
+
+    filled = image
+    if np.any(mask) and not np.all(mask):
+        _, ind = scipy.ndimage.distance_transform_edt(mask, return_indices=True)
+        filled = image[tuple(ind)]
+
+    residual = image - scipy.ndimage.median_filter(filled, size=background_size)
+    residual[mask] = 0.0
+
+    inner = residual[border:-border, border:-border][~mask[border:-border, border:-border]]
+    if inner.size == 0:
+        return residual, np.inf, mask
+
+    sigma = 1.4826 * np.median(np.abs(inner - np.median(inner))) + 1e-9
+
+    return residual, sigma, mask
+
+
 def find_peaks_local(
     images,
     n_sigma=8.0,
@@ -110,12 +151,13 @@ def find_peaks_local(
         if not np.any(image > 0):
             continue
 
-        residual = image - scipy.ndimage.median_filter(image, size=background_size)
-
-        inner = residual[border:-border, border:-border]
-        sigma = 1.4826 * np.median(np.abs(inner - np.median(inner))) + 1e-9
+        residual, sigma, mask = background_residual(image, background_size, border)
 
         smooth = scipy.ndimage.uniform_filter(residual, 3)
+
+        # no peaks within `box` pixels of masked pixels (centroid window)
+        near_mask = scipy.ndimage.binary_dilation(mask, iterations=box + 1) if np.any(mask) else mask
+        smooth[near_mask] = 0.0
 
         for i, j in skimage.feature.peak_local_max(
             smooth,

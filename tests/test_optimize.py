@@ -182,13 +182,25 @@ def test_refine_recovers_cell():
     cell = (8.0, 11.0, 14.0, 90, 90, 90)
     x_true = [0.3, 0.6, 0.4]
     kf, _, _ = simulate_laue(cell, x_true, WL, d_min=1.5, n_peaks=60, noise_deg=0.02, rng=4)
-    opt = CalculateUB(8.1, 10.9, 14.1, 90, 90, 90)
+    opt = CalculateUB(8.0, 10.9, 14.1, 90, 90, 90)
     opt.x = np.array(x_true)
     opt._score_angle_tol = np.deg2rad(1.0)
     opt.refine(kf, WL, "Orthorhombic")
-    assert opt.a == pytest.approx(8.0, rel=2e-3)
+    # the scale is fixed by a; the ratios are recovered
+    assert opt.a == 8.0
     assert opt.b == pytest.approx(11.0, rel=2e-3)
     assert opt.c == pytest.approx(14.0, rel=2e-3)
+
+
+def test_refine_scale_is_not_determined():
+    """Cubic Laue data constrain only the orientation, not a."""
+    cell = (10.0, 10.0, 10.0, 90, 90, 90)
+    x_true = [0.3, 0.6, 0.4]
+    kf, _, _ = simulate_laue(cell, x_true, WL, d_min=1.5, n_peaks=60, noise_deg=0.02, rng=4)
+    opt = CalculateUB(10.5, 10.5, 10.5, 90, 90, 90)
+    opt.x = np.array(x_true)
+    _, _, _, sig = opt.refine(kf, WL, "Cubic")
+    assert opt.a == 10.5 and sig[0] == 0.0
 
 
 @pytest.mark.slow
@@ -200,3 +212,64 @@ def test_find_orientation_protein_cell():
     ops = rotational_symmetry_ops(T4L)
     assert num >= 90
     assert misorientation_deg(opt.orientation_U(0.41, 0.77, 0.23), opt.orientation_U(*opt.x), ops) < 0.1
+
+
+def test_chance_model_matches_random_orientations():
+    """Expected chance matches sum_i p_i(tol) agree with a Monte Carlo."""
+    rng = np.random.default_rng(7)
+    kf, _, _ = simulate_laue(T4L, [0.41, 0.77, 0.23], (2.0, 10.0), d_min=2.5, n_peaks=99, rng=11)
+    opt = CalculateUB(*T4L)
+    opt.x = rng.random(3)
+    tol = np.deg2rad(0.35)
+    expected = opt.index_significance(kf, (2.0, 10.0), angle_tol=tol)["expected_chance"]
+    counts = [opt._index_from_U(opt.orientation_U(*x), kf, (2.0, 10.0), angle_tol=tol)[1] for x in rng.random((300, 3))]
+    assert np.mean(counts) == pytest.approx(expected, rel=0.1)
+
+
+def test_significance_score_recovers_orientation():
+    cell = (8.0, 11.0, 14.0, 90, 90, 90)
+    x_true = [0.3, 0.6, 0.4]
+    kf, h, _ = simulate_laue(cell, x_true, WL, d_min=1.5, n_peaks=40, rng=0)
+    opt = CalculateUB(*cell)
+    # small DE budgets recover this cell for only ~3 in 10 seeds with either
+    # score; the default (full-size) search is reliable
+    _, _, _, num = opt.find_orientation(kf, WL, heights=h, n_proc=-1, seed=0, score="significance")
+    ops = rotational_symmetry_ops(cell)
+    assert num >= 0.9 * len(kf)
+    assert misorientation_deg(opt.orientation_U(*x_true), opt.orientation_U(*opt.x), ops) < 0.1
+    report = opt.index_significance(kf, WL)
+    assert report["log10_p_value"] < -20
+
+
+def test_restarts_keep_best():
+    cell = (8.0, 11.0, 14.0, 90, 90, 90)
+    kf, h, _ = simulate_laue(cell, [0.3, 0.6, 0.4], WL, d_min=1.5, n_peaks=40, rng=0)
+    opt = CalculateUB(*cell)
+    opt.find_orientation(kf, WL, heights=h, n_proc=1, seed=0, n_restarts=3, accept_log10_p=None, popsize=5, maxiter=5)
+    ps = [r["log10_p_value"] for r in opt.restarts]
+    best = opt.restarts[int(np.argmin(ps))]
+    assert len(opt.restarts) == 3
+    assert np.allclose(opt.x, best["x"])
+
+
+def test_find_orientation_leaves_final_tolerance():
+    cell = (8.0, 11.0, 14.0, 90, 90, 90)
+    kf, h, _ = simulate_laue(cell, [0.3, 0.6, 0.4], WL, d_min=1.5, n_peaks=20, rng=0)
+    opt = CalculateUB(*cell)
+    opt.find_orientation(kf, WL, heights=h, n_proc=1, seed=0, n_restarts=1, angle_tol_deg=0.35, search_tol_deg=1.0, popsize=5, maxiter=5)
+    assert opt._score_angle_tol == pytest.approx(np.deg2rad(0.35))
+    conv, _ = to_conventional(opt, "P", cell)
+    assert conv._score_angle_tol == pytest.approx(np.deg2rad(0.35))
+
+
+def test_coarse_subset_skips_uninformative_peaks():
+    rng = np.random.default_rng(4)
+    kf = random_directions(30, rng)
+    opt = CalculateUB(*T4L)
+    w = np.ones(30)
+    opt.prepare_indexer(kf, (2.0, 10.0), force=True, lookup=False)
+    counts = opt._candidate_counts.copy()
+    cap = int(np.median(counts))
+    sub = opt.select_coarse_subset(kf, (2.0, 10.0), w, n_coarse=30, max_candidates=cap)
+    assert np.all(counts[sub] <= cap)
+    assert len(sub) == int(np.sum((counts > 0) & (counts <= cap)))

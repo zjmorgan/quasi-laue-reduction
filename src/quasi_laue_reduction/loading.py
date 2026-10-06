@@ -27,6 +27,20 @@ def instrument_definition(name):
     return str(resources.files("quasi_laue_reduction") / "instruments" / name)
 
 
+def calibration_file(name="IMAGINE_garnet_IPTS-37331_2026-10-01", resolution="lite"):
+    """
+    Path to a packaged DetCal calibration.
+
+    Parameters
+    ----------
+    name : str, optional
+        Calibration name (see ``calibration/*.json`` for provenance).
+    resolution : str, optional
+        ``"lite"`` (128 x 128 panels) or ``"full"`` (512 x 512).
+    """
+    return str(resources.files("quasi_laue_reduction") / "calibration" / f"{name}_{resolution}.DetCal")
+
+
 def pixel_shape_from_idf(xml):
     """
     (xpixels, ypixels) of the rectangular panels in an IDF string.
@@ -38,6 +52,55 @@ def pixel_shape_from_idf(xml):
         raise ValueError("Expected a single rectangular panel type in the IDF.")
 
     return int(xs.pop()), int(ys.pop())
+
+
+def grouping_size(pattern):
+    """
+    Side length g of the square g x g pixel groups in a GroupingPattern.
+    """
+    first = pattern.split(",", 1)[0]
+    n = len(first.split("+"))
+    g = int(round(np.sqrt(n)))
+    return g if g * g == n else 1
+
+
+def correct_grouped_panel_origin(xml, group):
+    """
+    Move grouped-panel pixel centres to the centres of their pixel groups.
+
+    A g x g-grouped rectangular panel written with the full-resolution
+    ``xstart``/``ystart`` (the centre of the first raw pixel) places every
+    grouped pixel (g - 1) / 2 raw pixels off the centroid of the pixels it
+    sums: 1.5 raw pixels (0.36 mm) for the IMAGINE 4 x 4 lite files. The
+    start is shifted only when it still equals the raw value,
+    -N g / 2 * step / g.
+
+    Returns
+    -------
+    xml : str
+        Corrected IDF.
+    corrected : bool
+        Whether a panel was changed.
+    """
+    if group <= 1:
+        return xml, False
+
+    corrected = False
+
+    def fix(m):
+        nonlocal corrected
+        axis, n, start, step = m.group(1), int(m.group(2)), float(m.group(3)), float(m.group(4))
+        raw_step = step / group
+        if not np.isclose(start, -n * group / 2 * raw_step, rtol=0, atol=1e-9):
+            return m.group(0)
+        corrected = True
+        new = start + (group - 1) / 2 * raw_step
+        return f'{axis}pixels="{n}" {axis}start="{new!r}" {axis}step="{step!r}"'
+
+    pattern = r'([xy])pixels="(\d+)"\s+\1start="([-\d.eE+]+)"\s+\1step="([-\d.eE+]+)"'
+    xml = re.sub(pattern, fix, xml)
+
+    return xml, corrected
 
 
 def read_lite(filename):
@@ -54,7 +117,9 @@ def read_lite(filename):
     info : dict
         ``counts`` (per spectrum, summed event weights), ``idf`` (embedded
         instrument XML), ``instrument``, ``pixel_shape``, ``run_number``,
-        ``title`` and ``goniometer`` (3x3 rotation, identity if absent).
+        ``title``, ``goniometer`` (3x3 rotation, identity if absent) and
+        ``group`` (pixel grouping side length from the processing history,
+        1 if none).
     """
     with h5py.File(filename, "r") as f:
         entry = f["mantid_workspace_1"]
@@ -78,6 +143,15 @@ def read_lite(filename):
         if "goniometer/rotation_matrix" in logs:
             R = np.asarray(logs["goniometer/rotation_matrix"][()], dtype=float).reshape(3, 3)
 
+        group = 1
+        for key in entry.get("process", {}):
+            if key.startswith("MantidAlgorithm"):
+                record = text(entry["process"][key]["data"][()][0])
+                if record.startswith("Algorithm: GroupDetectors"):
+                    m = re.search(r"GroupingPattern, Value: ([0-9+,]+)", record)
+                    if m:
+                        group = grouping_size(m.group(1))
+
     counts = np.zeros(len(indices) - 1)
     nonempty = np.flatnonzero(np.diff(indices) > 0)
     counts[nonempty] = np.add.reduceat(weights.astype(np.float64), indices[nonempty])
@@ -92,6 +166,7 @@ def read_lite(filename):
         "run_number": run_number,
         "title": title,
         "goniometer": R,
+        "group": group,
     }
 
 
@@ -120,9 +195,21 @@ def _counts_workspace(ws, counts, idf_xml=None, idf_file=None, instrument=None):
         LoadInstrument(Workspace=ws, Filename=idf_file, RewriteSpectraMap=True)
 
 
-def load_lite(filename, ws="data"):
+def load_lite(filename, ws="data", correct_pixel_centres=True, detcal=None):
     """
     One-bin Workspace2D of per-pixel counts from a lite event NeXus file.
+
+    Parameters
+    ----------
+    filename : str
+        Lite event NeXus file.
+    ws : str, optional
+        Output workspace name.
+    correct_pixel_centres : bool, optional
+        Apply :func:`correct_grouped_panel_origin` to the embedded IDF.
+    detcal : str, optional
+        DetCal calibration applied after loading (see
+        :func:`detcal.apply_detcal`).
 
     Returns
     -------
@@ -133,7 +220,17 @@ def load_lite(filename, ws="data"):
 
     info = read_lite(filename)
 
+    info["pixel_centres_corrected"] = False
+    if correct_pixel_centres:
+        info["idf"], info["pixel_centres_corrected"] = correct_grouped_panel_origin(info["idf"], info["group"])
+
     _counts_workspace(ws, info["counts"], idf_xml=info["idf"], instrument=info["instrument"])
+
+    if detcal is not None:
+        from .detcal import apply_detcal
+
+        apply_detcal(ws, detcal, info["pixel_shape"])
+        AddSampleLog(Workspace=ws, LogName="DetCal", LogText=detcal)
 
     if not np.allclose(info["goniometer"], np.eye(3)):
         mtd[ws].run().getGoniometer().setR(info["goniometer"])

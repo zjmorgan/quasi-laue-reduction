@@ -129,3 +129,26 @@ def test_full_workflow(laue_workspace):
     ql.integrate_peaks(roi_pixels=6)
     intens = np.array([p.getIntensity() for p in mtd[ws + "_peaks"]])
     assert np.mean(intens > 0) > 0.5
+
+
+def test_detcal_round_trip(laue_workspace, tmp_path):
+    from scipy.spatial.transform import Rotation
+
+    from quasi_laue_reduction.detcal import apply_detcal, write_detcal
+
+    make_workspace("nominal", np.zeros(NB * N * N))
+    pos0 = QuasiLaue("nominal", pixel_shape=(N, N)).positions
+
+    target = pos0.copy()
+    target[0] += [0.004, -0.002, 0.001]
+    c = target[1].reshape(-1, 3).mean(0)
+    target[1] = c + Rotation.from_rotvec([0.01, 0.02, -0.005]).apply(target[1].reshape(-1, 3) - c).reshape(N, N, 3)
+
+    fn = str(tmp_path / "test.DetCal")
+    write_detcal(fn, target, range(1, NB + 1))
+
+    make_workspace("moved", np.zeros(NB * N * N))
+    assert apply_detcal("moved", fn, (N, N)) == NB
+    pos1 = QuasiLaue("moved", pixel_shape=(N, N)).positions
+
+    assert np.abs(pos1 - target).max() < 2e-6

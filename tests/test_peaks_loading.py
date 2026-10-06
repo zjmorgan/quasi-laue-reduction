@@ -1,4 +1,7 @@
+import re
+
 import h5py
+import pytest
 import numpy as np
 
 from quasi_laue_reduction.loading import pixel_shape_from_idf, read_lite
@@ -94,3 +97,61 @@ def test_read_lite(tmp_path):
 
 def test_pixel_shape_from_idf():
     assert pixel_shape_from_idf(IDF) == (4, 2)
+
+
+def test_grouped_panel_origin_correction():
+    from quasi_laue_reduction.loading import correct_grouped_panel_origin, grouping_size
+
+    raw_step = 0.00023809375
+    lite = (
+        f'<type name="panel" is="rectangular_detector" type="pixel"\n'
+        f'      xpixels="128" xstart="{-256 * raw_step!r}" xstep="{4 * raw_step!r}"\n'
+        f'      ypixels="128" ystart="{-256 * raw_step!r}" ystep="{4 * raw_step!r}" >'
+    )
+    fixed, changed = correct_grouped_panel_origin(lite, 4)
+    assert changed
+
+    start = float(re.search(r'xstart="([-\d.eE+]+)"', fixed).group(1))
+    # centre of the first 4 raw pixels
+    assert start == pytest.approx(-256 * raw_step + 1.5 * raw_step)
+
+    # already-correct panels are left alone
+    again, changed = correct_grouped_panel_origin(fixed, 4)
+    assert not changed and again == fixed
+
+    assert grouping_size("0+1+2+3+512+513+514+515+1024+1025+1026+1027+1536+1537+1538+1539,4+5") == 4
+    assert grouping_size("0,1,2") == 1
+
+
+def test_masked_border_gives_no_corner_peaks():
+    """Zeroed (masked) edges must not create peaks at the panel corners."""
+    rng = np.random.default_rng(3)
+    images, truth = spot_images(rng, n_banks=2)
+    images[:, :8, :] = 0
+    images[:, -8:, :] = 0
+    images[:, :, :8] = 0
+    images[:, :, -8:] = 0
+    coords, _, _ = find_peaks_local(images, n_sigma=8)
+    near_corner = (np.minimum(coords[:, 1], 127 - coords[:, 1]) < 14) & (np.minimum(coords[:, 2], 127 - coords[:, 2]) < 14)
+    assert not near_corner.any()
+
+
+def test_packaged_calibration_parses():
+    import json
+    import os
+
+    from quasi_laue_reduction.detcal import read_detcal
+    from quasi_laue_reduction.loading import calibration_file
+
+    for res, n in (("lite", 128), ("full", 512)):
+        fn = calibration_file(resolution=res)
+        l1, panels = read_detcal(fn)
+        assert len(panels) == 80
+        assert all(p["nrows"] == n and p["ncols"] == n for p in panels.values())
+        for p in panels.values():
+            assert np.isclose(np.linalg.norm(p["base"]), 1, atol=1e-4)
+            assert abs(np.dot(p["base"], p["up"])) < 1e-4
+            assert 0.2 < np.linalg.norm(p["centre"]) < 0.8
+    prov = json.load(open(calibration_file().replace("_lite.DetCal", ".json")))
+    assert prov["validation"]["selected"].startswith("D")
+    assert os.path.basename(calibration_file()) in prov["files"].values()

@@ -29,7 +29,7 @@ build-backend = "setuptools.build_meta"
 where = ["src"]
 
 [tool.setuptools.package-data]
-"quasi_laue_reduction" = ["instruments/*.xml"]
+"quasi_laue_reduction" = ["instruments/*.xml", "calibration/*.DetCal", "calibration/*.json"]
 
 [tool.pytest.ini_options]
 testpaths = ["tests"]

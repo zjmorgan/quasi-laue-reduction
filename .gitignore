@@ -6,3 +6,5 @@ dist/
 benchmarks/results/
 *.npz
 *.png
+*.pdf
+work/

@@ -31,7 +31,7 @@ import scipy.spatial
 # Nearest-neighbour lookup of the best candidate per peak is only worth
 # building a KD-tree for when the candidate count is moderate; beyond this
 # the one-off indexing calls use the vectorised scan instead.
-MAX_TREE_CANDIDATES = 5_000_000
+MAX_TREE_CANDIDATES = 20_000_000
 
 # Separation along the fourth (peak label) axis of the stacked KD-tree. Any
 # two unit vectors are at most 2 apart, so a gap > 2 keeps every query
@@ -148,6 +148,9 @@ class CalculateUB:
         self._score_angle_tol = np.deg2rad(0.35)
         self._score_index_bonus = 4.0
         self._score_outlier_cap = 3.0
+        self._score_mode = "threshold"
+        self._angle_floor = np.deg2rad(0.05)
+        self._n_dirs = None
         self._score_weights = None
 
         self.last_cost = None
@@ -482,6 +485,7 @@ class CalculateUB:
         ghat = self._g / self._q[:, None]
 
         rows, labels = [], []
+        n_dirs = np.zeros(len(self._candidate_ranges))
 
         for i, (lo, hi) in enumerate(self._candidate_ranges):
             if hi <= lo:
@@ -490,6 +494,10 @@ class CalculateUB:
             idx = lo + np.sort(first)
             rows.append(idx)
             labels.append(np.full(len(idx), i))
+            n_dirs[i] = len(idx)
+
+        # distinct candidate directions per peak (harmonics collapsed)
+        self._n_dirs = n_dirs
 
         if rows:
             rows = np.concatenate(rows)
@@ -555,6 +563,51 @@ class CalculateUB:
 
         return np.arccos(np.clip(best, -1.0, 1.0)), self._tree_rows[j]
 
+    def _log_chance(self, n_dirs, angle):
+        """
+        log of the probability that a random orientation puts one of
+        ``n_dirs`` candidate directions within ``angle`` of a peak.
+
+        For n directions uniform on the sphere the chance that none falls in
+        a cap of angular radius t is (1 - (1 - cos t) / 2)^n ~ exp(-n t^2 / 4).
+        Angles below ``_angle_floor`` (the measurement precision) earn no
+        extra credit.
+        """
+        t = np.maximum(angle, self._angle_floor)
+        return np.log(-np.expm1(-n_dirs * t**2 / 4.0))
+
+    def index_significance(self, kf_ki_dir, wavelength, angle_tol=None):
+        """
+        How unlikely the current indexing is for a random orientation.
+
+        The number of peaks a random orientation indexes within
+        ``angle_tol`` is approximately Poisson with mean
+        sum_i p_i(angle_tol), p_i = 1 - exp(-N_i angle_tol^2 / 4), N_i the
+        distinct candidate directions of peak i. This is the p-value for a
+        single, pre-specified orientation; a global search examines many
+        orientations, so treat it as a lower bound on the false-alarm
+        probability.
+
+        Returns
+        -------
+        report : dict
+            ``indexed``, ``expected_chance`` and ``log10_p_value``.
+        """
+        import scipy.stats
+
+        angle_tol = self._score_angle_tol if angle_tol is None else angle_tol
+
+        _, num, _, _ = self.index(kf_ki_dir, wavelength, angle_tol=angle_tol)
+
+        p = -np.expm1(-self._n_dirs * angle_tol**2 / 4.0)
+        lam = float(np.sum(p))
+
+        return {
+            "indexed": int(num),
+            "expected_chance": lam,
+            "log10_p_value": float(scipy.stats.poisson.logsf(num - 1, lam) / np.log(10)),
+        }
+
     def _index_from_U(
         self,
         U,
@@ -611,7 +664,13 @@ class CalculateUB:
         ok = np.zeros(n_peaks, dtype=bool)
         ok[ne] = best_angle <= angle_tol
 
-        cost = float(np.sum(weights * z**2) - index_bonus * np.sum(weights[ok]))
+        if self._score_mode == "significance":
+            logp = np.zeros(n_peaks)
+            logp[ne] = self._log_chance(self._n_dirs[ne], best_angle)
+            cost = float(np.sum(weights * logp))
+        else:
+            cost = float(np.sum(weights * z**2) - index_bonus * np.sum(weights[ok]))
+
         num = int(np.sum(ok))
 
         self.last_cost = cost
@@ -719,6 +778,8 @@ class CalculateUB:
         max_grid_points=20_000_000,
         seed=None,
         start_method=None,
+        score="threshold",
+        angle_floor=np.deg2rad(0.05),
     ):
         """
         Global orientation search by parallel differential evolution.
@@ -754,6 +815,14 @@ class CalculateUB:
             Seed for the DE random number generator.
         start_method : str, optional
             Worker start method, see :class:`ChunkedPoolMap`.
+        score : str, optional
+            ``"threshold"``: capped quadratic in angle / tol minus a bonus
+            per indexed peak. ``"significance"``: sum of per-peak log chance
+            probabilities (see :meth:`_log_chance`), which weights each peak
+            by how unlikely its match is for a random orientation and needs
+            no tolerance.
+        angle_floor : float, optional
+            Measurement precision (radians) for the significance score.
 
         Returns
         -------
@@ -770,6 +839,8 @@ class CalculateUB:
         self._score_angle_tol = angle_tol
         self._score_index_bonus = index_bonus
         self._score_outlier_cap = outlier_cap
+        self._score_mode = score
+        self._angle_floor = angle_floor
 
         self.prepare_indexer(
             self.kf_ki_dir,
@@ -907,6 +978,7 @@ class CalculateUB:
         n_coarse=80,
         ambiguity_power=0.5,
         min_angle_deg=1.0,
+        max_candidates=200_000,
     ):
         """
         Choose the peaks for the global search.
@@ -914,6 +986,9 @@ class CalculateUB:
         Peaks are ranked by weight / N_candidates**ambiguity_power and taken
         greedily, skipping any within ``min_angle_deg`` of one already
         selected; the list is topped up by rank if that leaves too few.
+        Peaks with more than ``max_candidates`` candidates (high-angle peaks
+        at a wide band, matched by chance almost always) are left out of
+        the search; they are still indexed afterwards.
         """
         self.prepare_indexer(
             kf_ki_dir,
@@ -935,10 +1010,13 @@ class CalculateUB:
         n_target = min(n_coarse, len(kf_ki_dir))
         selected = []
 
+        usable = (self._candidate_counts > 0) & (self._candidate_counts <= max_candidates)
+        n_target = min(n_target, int(usable.sum()))
+
         for ind in order:
             if len(selected) >= n_target:
                 break
-            if self._candidate_counts[ind] <= 0:
+            if not usable[ind]:
                 continue
             if not selected or np.max(dirs[selected] @ dirs[ind]) < cos_min_angle:
                 selected.append(ind)
@@ -948,7 +1026,7 @@ class CalculateUB:
         for ind in order:
             if len(selected) >= n_target:
                 break
-            if ind not in chosen:
+            if usable[ind] and ind not in chosen:
                 selected.append(ind)
                 chosen.add(ind)
 
@@ -1003,20 +1081,35 @@ class CalculateUB:
         n_proc=-1,
         n_coarse=80,
         weight_power=0.5,
-        ambiguity_power=0.5,
+        ambiguity_power=None,
         angle_tol_deg=0.35,
+        search_tol_deg=1.0,
         n_subset_reassign=2,
         n_full_reassign=3,
+        n_restarts=3,
+        accept_log10_p=-5.0,
+        score="threshold",
         seed=None,
         **de_kwargs,
     ):
         """
-        Weighted two-stage orientation search.
+        Weighted two-stage orientation search with restarts.
+
+        For each restart:
 
         1. Global DE search on a coarse subset of strong, unambiguous and
-           angularly distinct peaks.
-        2. Weighted reassignment/Wahba cycles on the subset, then on all
-           peaks.
+           angularly distinct peaks, at ``search_tol_deg``.
+        2. Weighted reassignment/Wahba cycles on the subset and then on all
+           peaks at ``search_tol_deg``, followed by cycles on all peaks at
+           ``angle_tol_deg`` (coarse to fine).
+
+        The restart with the smallest :meth:`index_significance` p-value
+        (best of the final and search tolerances) is kept; restarts stop
+        early once it falls below
+        ``10**accept_log10_p``. On synthetic full-band (2-10 A) T4 lysozyme
+        data with 0.2 degree noise, recovered orientations had
+        log10 p = -7.7 to -9.1 and failed searches -0.8 to -2.4, so a
+        failed restart is recognisable and restarting is effective.
 
         Parameters
         ----------
@@ -1030,14 +1123,31 @@ class CalculateUB:
             Worker processes for DE.
         n_coarse : int, optional
             Size of the coarse subset.
-        weight_power, ambiguity_power : float, optional
-            Height compression and candidate-count penalty.
+        weight_power : float, optional
+            Height compression for the weights.
+        ambiguity_power : float, optional
+            Candidate-count penalty; defaults to 0.5 for the threshold score
+            and 0 for the significance score, which accounts for candidate
+            counts itself.
         angle_tol_deg : float, optional
-            Angular indexing tolerance in degrees.
+            Final angular indexing tolerance in degrees.
+        search_tol_deg : float, optional
+            Tolerance for the global search and first reassignment (degrees,
+            default 1). A tolerance above the angular residuals widens the
+            basin; ``None`` uses ``angle_tol_deg``.
         n_subset_reassign, n_full_reassign : int, optional
             Reassignment cycles on the subset and on all peaks.
+        n_restarts : int, optional
+            Maximum independent DE searches (seeds ``seed``, ``seed + 1``,
+            ...).
+        accept_log10_p : float, optional
+            Stop restarting once log10 of the significance p-value at
+            ``angle_tol_deg`` is below this (``None`` runs all restarts).
+        score : str, optional
+            Search objective, ``"threshold"`` or ``"significance"``; see
+            :meth:`minimize`.
         seed : int, optional
-            DE seed.
+            DE seed of the first restart.
         **de_kwargs
             Passed to :meth:`minimize` (e.g. ``popsize``, ``maxiter``).
 
@@ -1059,48 +1169,90 @@ class CalculateUB:
         else:
             weights = self.make_peak_weights(heights, power=weight_power)
 
+        if ambiguity_power is None:
+            ambiguity_power = 0.0 if score == "significance" else 0.5
+
         angle_tol = np.deg2rad(angle_tol_deg)
+        search_tol = angle_tol if search_tol_deg is None else np.deg2rad(search_tol_deg)
 
         subset = self.select_coarse_subset(
             kf_ki_dir,
             wavelength,
             weights,
             n_coarse=n_coarse,
-            ambiguity_power=ambiguity_power,
+            ambiguity_power=0.5 if ambiguity_power == 0 else ambiguity_power,
         )
 
-        self.minimize(
-            kf_ki_dir[subset],
-            wavelength,
-            n_proc=n_proc,
-            peak_weights=weights[subset],
-            angle_tol=angle_tol,
-            ambiguity_power=ambiguity_power,
-            n_reassign=0,
-            seed=seed,
-            **de_kwargs,
-        )
+        self.restarts = []
+        best = None
 
-        self.reassign_refine(
-            kf_ki_dir[subset],
-            wavelength,
-            weights[subset],
-            ambiguity_power,
-            angle_tol,
-            n_cycles=n_subset_reassign,
-        )
+        for r in range(n_restarts):
+            self.x = None
 
-        _, num, hkl, lamda = self.reassign_refine(
-            kf_ki_dir,
-            wavelength,
-            weights,
-            ambiguity_power,
-            angle_tol,
-            n_cycles=n_full_reassign,
+            self.minimize(
+                kf_ki_dir[subset],
+                wavelength,
+                n_proc=n_proc,
+                peak_weights=weights[subset],
+                angle_tol=search_tol,
+                ambiguity_power=ambiguity_power,
+                n_reassign=0,
+                seed=None if seed is None else seed + r,
+                score=score,
+                **de_kwargs,
+            )
+
+            self.reassign_refine(
+                kf_ki_dir[subset],
+                wavelength,
+                weights[subset],
+                ambiguity_power,
+                search_tol,
+                n_cycles=n_subset_reassign,
+            )
+
+            self.reassign_refine(kf_ki_dir, wavelength, weights, ambiguity_power, search_tol, n_cycles=n_full_reassign)
+
+            _, num, _, _ = self.reassign_refine(
+                kf_ki_dir, wavelength, weights, ambiguity_power, angle_tol, n_cycles=n_full_reassign
+            )
+
+            # restarts are compared by the count-based significance, taking
+            # the most significant of the final and search tolerances (robust
+            # when residuals are comparable to the final tolerance)
+            log10_p = min(
+                self.index_significance(kf_ki_dir, wavelength, angle_tol=t)["log10_p_value"]
+                for t in {angle_tol, search_tol}
+            )
+
+            self.restarts.append(
+                {
+                    "seed": None if seed is None else seed + r,
+                    "indexed": int(num),
+                    "log10_p_value": log10_p,
+                    "x": self.x.copy(),
+                }
+            )
+
+            if best is None or log10_p < best["log10_p_value"]:
+                best = self.restarts[-1]
+
+            if accept_log10_p is not None and best["log10_p_value"] < accept_log10_p:
+                break
+
+        self.x = best["x"].copy()
+
+        # leave the final tolerance as the optimizer default (minimize set
+        # the search tolerance), so later index/refine calls use it
+        self._score_angle_tol = angle_tol
+
+        _, num, hkl, lamda = self.index(
+            kf_ki_dir, wavelength, angle_tol=angle_tol, peak_weights=weights, ambiguity_power=ambiguity_power
         )
 
         self.coarse_subset = subset
         self.peak_weights = weights
+        self.significance = self.index_significance(kf_ki_dir, wavelength, angle_tol=angle_tol)
 
         UB = self.UB_matrix(self.orientation_U(*self.x), self.reciprocal_lattice_B())
 
@@ -1195,9 +1347,14 @@ class CalculateUB:
 
         return (lamda[:, None] * (hkl @ UB.T) - kf_ki_dir).ravel()
 
-    def refine(self, kf_ki_dir, wavelength, cell="Triclinic", error=0.15):
+    def refine(self, kf_ki_dir, wavelength, cell="Triclinic", error=0.15, fix_scale=True):
         """
         Refine orientation and constrained lattice constants.
+
+        With unknown wavelengths the absolute cell scale is not determined:
+        scaling every length by s is absorbed by scaling each wavelength by
+        s, so only length ratios and angles are measurable. By default ``a``
+        is therefore held at its current value.
 
         Parameters
         ----------
@@ -1209,6 +1366,8 @@ class CalculateUB:
             Lattice system constraint.
         error : float, optional
             Fractional bound around the starting lattice constants.
+        fix_scale : bool, optional
+            Hold ``a`` fixed (refine ratios and angles only).
 
         Returns
         -------
@@ -1227,6 +1386,13 @@ class CalculateUB:
         self.cell = cell
 
         fun, x0_cell = self._cell_function(cell)
+
+        if fix_scale:
+            a_fixed, x0_cell = x0_cell[0], x0_cell[1:]
+            free_fun = fun
+
+            def fun(x):
+                return free_fun((a_fixed, *x))
 
         kf_ki_dir = np.asarray(kf_ki_dir, dtype=float)
         wavelength = tuple(float(x) for x in wavelength)
@@ -1260,6 +1426,9 @@ class CalculateUB:
 
         cov = np.linalg.pinv(J.T @ J) * chi2dof
         sig = np.sqrt(np.maximum(np.diag(cov), 0.0))
+
+        if fix_scale:
+            sig = np.r_[0.0, sig]
 
         uncertainties = self._expand_cell_uncertainty(cell, sig)
 

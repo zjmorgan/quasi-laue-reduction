@@ -1,0 +1,55 @@
+{
+ "instrument": "IMAGINE detector on HFIR CG4D (lite 4x4-grouped and full-resolution panels)",
+ "files": {
+  "lite": "IMAGINE_garnet_IPTS-37331_2026-10-01_lite.DetCal",
+  "full": "IMAGINE_garnet_IPTS-37331_2026-10-01_full.DetCal"
+ },
+ "apply_with": "quasi_laue_reduction.detcal.apply_detcal (Mantid LoadIsawDetCal silently ignores the IMAGINE IDF, whose rectangular panels are unnamed children of bankNN assemblies)",
+ "base_geometry": "IDF embedded in the lite files (valid from 2025-10-01), lite pixel centres corrected to their 4x4 group centroids",
+ "calibrant": {
+  "sample": "Yb3Al5O12 garnet",
+  "space_group": "Ia-3d",
+  "a_A": 11.9386,
+  "runs": "IPTS-37331 even runs 2022-2156 (68 runs, axis0 = 70-270 deg in 3 deg steps; odd runs are goniometer moves)",
+  "band_A": [
+   2.0,
+   10.0
+  ],
+  "peaks": 2722
+ },
+ "model": "D: relative yaw of array 2 (banks 61-108) about the vertical axis through the sample; vertical shift of each array; horizontal (x, z) translation of each array; sample fixed at the origin; goniometer axis, U0 and per-run angle offsets fitted",
+ "parameters": {
+  "relative_yaw_deg": [
+   "-1.1729 +- 0.0720"
+  ],
+  "array_vertical_mm": [
+   "6.2669 +- 0.1986",
+   "5.1815 +- 0.1382"
+  ],
+  "array_horizontal_xz_mm": [
+   "-1.5217 +- 0.2551",
+   "-3.7688 +- 0.2714",
+   "3.9982 +- 0.3328",
+   "2.1808 +- 0.5149"
+  ]
+ },
+ "uncertainty_note": "formal 1-sigma; residuals within a run are correlated, so true uncertainties are likely 2-3x larger; the relative yaw ranged -0.76 to -1.17 deg depending on which other terms were free",
+ "validation": {
+  "metric": "fraction of held-out peaks (every other run) indexed within 0.35 deg, per-run angles refitted",
+  "by_stage": {
+   "A goniometer": 0.202,
+   "B +relative array yaw": 0.293,
+   "C +array vertical shifts": 0.422,
+   "D +array horizontal translations": 0.583,
+   "E +panel in-plane shifts": 0.58
+  },
+  "selected": "D +array horizontal translations",
+  "note": "per-panel in-plane shifts (stage E) did not improve held-out indexing and are not included"
+ },
+ "goniometer_axis": [
+  -0.00305,
+  -0.99997,
+  -0.00702
+ ],
+ "created": "2026-10-01"
+}
