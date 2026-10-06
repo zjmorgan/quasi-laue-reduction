@@ -29,6 +29,7 @@ from .optimize import (
 from .peaks import (
     find_peaks_global,
     find_peaks_local,
+    find_peaks_matched,
     interpolate_positions,
     scattering_directions,
 )
@@ -134,16 +135,20 @@ class QuasiLaue:
         ----------
         method : str, optional
             ``"local"`` (per-bank background-normalised threshold with
-            sub-pixel centroids) or ``"global"`` (single absolute threshold,
-            the original finder).
+            sub-pixel centroids), ``"matched"`` (Gaussian matched filter
+            with destriping, more sensitive to faint high-angle spots) or
+            ``"global"`` (single absolute threshold, the original finder).
         **kwargs
-            Passed to :func:`peaks.find_peaks_local` or
+            Passed to :func:`peaks.find_peaks_local`,
+            :func:`peaks.find_peaks_matched` or
             :func:`peaks.find_peaks_global`.
         """
         images = self.extract_images()
 
         if method == "local":
             coords, heights, _ = find_peaks_local(images, **kwargs)
+        elif method == "matched":
+            coords, heights, _ = find_peaks_matched(images, **kwargs)
         elif method == "global":
             coords, heights = find_peaks_global(images, **kwargs)
         else:
@@ -270,8 +275,15 @@ class QuasiLaue:
         sig = prim.significance
         self.significance = sig
         print(
-            "Indexed {} of {} peaks (random orientations: {:.1f} expected; log10 p = {:.1f}; {} restart(s))".format(
-                num, len(self.kf_ki_dir), sig["expected_chance"], sig["log10_p_value"], len(prim.restarts)
+            "Indexed {} of {} peaks; search peaks {} of {} indexed (random orientations: {:.1f} expected; "
+            "log10 p = {:.1f}; {} restart(s))".format(
+                num,
+                len(self.kf_ki_dir),
+                sig["indexed"],
+                sig["n_informative"],
+                sig["expected_chance"],
+                sig["log10_p_value"],
+                len(prim.restarts),
             )
         )
 

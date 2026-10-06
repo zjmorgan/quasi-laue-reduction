@@ -6,6 +6,8 @@ order as the workspace spectra, so the flat index of a pixel is its
 spectrum index.
 """
 
+import warnings
+
 import numpy as np
 import scipy.ndimage
 import skimage.feature
@@ -180,6 +182,130 @@ def find_peaks_local(
             coords.append((bank, (w * ii).sum() / w.sum(), (w * jj).sum() / w.sum()))
             heights.append(w.sum())
             snr.append(residual[i, j] / sigma)
+
+    return (
+        np.array(coords, dtype=float).reshape(-1, 3),
+        np.array(heights),
+        np.array(snr),
+    )
+
+
+def destripe(residual, mask):
+    """
+    Remove line artefacts by subtracting the median of every row and then
+    of every column of the residual (masked pixels ignored).
+    """
+    r = np.where(mask, np.nan, residual)
+    with np.errstate(all="ignore"), warnings.catch_warnings():
+        warnings.simplefilter("ignore", RuntimeWarning)
+        residual = residual - np.nan_to_num(np.nanmedian(r, axis=1))[:, None]
+        r = np.where(mask, np.nan, residual)
+        residual = residual - np.nan_to_num(np.nanmedian(r, axis=0))[None, :]
+
+    residual[mask] = 0.0
+
+    return residual
+
+
+def find_peaks_matched(
+    images,
+    z_min=5.0,
+    spot_sigma=1.0,
+    destripe_lines=True,
+    edge=1,
+    border=3,
+    min_pix=3,
+    box=2,
+    background_size=15,
+    max_peaks=400,
+):
+    """
+    Peaks detected with a matched (Gaussian) filter on the
+    background-subtracted image.
+
+    The residual is convolved with a normalised Gaussian of the spot size
+    and divided by its noise, sigma sqrt(sum w^2), so the threshold applies
+    to the summed signal of a spot rather than to its brightest pixel. This
+    finds faint spots spread over several pixels, which dominate at high
+    scattering angles. Optional destriping removes line artefacts that a
+    median-filter background leaves behind.
+
+    Parameters
+    ----------
+    images : ndarray
+        Detector counts with shape (n_banks, nx, ny).
+    z_min : float, optional
+        Detection threshold on the filtered significance.
+    spot_sigma : float, optional
+        Gaussian width of the matched filter in pixels.
+    destripe_lines : bool, optional
+        Subtract row and column medians from the residual.
+    edge : int, optional
+        Pixels excluded next to masked pixels.
+    border : int, optional
+        Border excluded from the noise estimate.
+    min_pix : int, optional
+        Minimum separation of peaks in pixels.
+    box : int, optional
+        Half-width of the centroid window.
+    background_size : int, optional
+        Median-filter size for the background.
+    max_peaks : int, optional
+        Maximum peaks per bank.
+
+    Returns
+    -------
+    coords, heights, snr
+        As :func:`find_peaks_local`; ``snr`` is the filtered significance.
+    """
+    kernel = np.zeros((8 * int(np.ceil(spot_sigma)) + 1,) * 2)
+    kernel[kernel.shape[0] // 2, kernel.shape[1] // 2] = 1.0
+    kernel = scipy.ndimage.gaussian_filter(kernel, spot_sigma)
+    noise_gain = np.sqrt(np.sum(kernel**2))
+
+    coords, heights, snr = [], [], []
+
+    for bank, image in enumerate(images):
+        image = np.asarray(image, dtype=float)
+
+        if not np.any(image > 0):
+            continue
+
+        residual, sigma, mask = background_residual(image, background_size, border)
+
+        if destripe_lines:
+            residual = destripe(residual, mask)
+            inner = residual[border:-border, border:-border][~mask[border:-border, border:-border]]
+            if inner.size == 0:
+                continue
+            sigma = 1.4826 * np.median(np.abs(inner - np.median(inner))) + 1e-9
+
+        z = scipy.ndimage.gaussian_filter(residual, spot_sigma) / (sigma * noise_gain)
+
+        if np.any(mask) and edge:
+            z[scipy.ndimage.binary_dilation(mask, iterations=edge)] = 0.0
+
+        for i, j in skimage.feature.peak_local_max(
+            z,
+            num_peaks=max_peaks,
+            min_distance=min_pix,
+            threshold_abs=z_min,
+            exclude_border=edge + 1,
+        ):
+            window = (
+                slice(max(i - box, 0), i + box + 1),
+                slice(max(j - box, 0), j + box + 1),
+            )
+            w = np.clip(residual[window], 0.0, None)
+
+            if w.sum() <= 0:
+                continue
+
+            ii, jj = np.mgrid[window]
+
+            coords.append((bank, (w * ii).sum() / w.sum(), (w * jj).sum() / w.sum()))
+            heights.append(w.sum())
+            snr.append(z[i, j])
 
     return (
         np.array(coords, dtype=float).reshape(-1, 3),

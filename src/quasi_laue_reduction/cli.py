@@ -25,8 +25,9 @@ def parse_args(argv=None):
     p.add_argument("--band", nargs=2, type=float, required=True, metavar=("LMIN", "LMAX"), help="wavelength band in angstroms")
     p.add_argument("--lattice", default=None, help="lattice system for --refine, e.g. Hexagonal")
     p.add_argument("--refine", action="store_true", help="refine lattice constants after indexing")
-    p.add_argument("--peak-method", default="local", choices=["local", "global"])
+    p.add_argument("--peak-method", default="local", choices=["local", "matched", "global"])
     p.add_argument("--n-sigma", type=float, default=8.0, help="local peak threshold")
+    p.add_argument("--z-min", type=float, default=5.0, help="matched-filter peak threshold")
     p.add_argument("--n-proc", type=int, default=-1)
     p.add_argument("--seed", type=int, default=None)
     p.add_argument("--popsize", type=int, default=300)
@@ -36,6 +37,8 @@ def parse_args(argv=None):
     p.add_argument("--d-min", type=float, default=2.0, help="prediction resolution limit")
     p.add_argument("--save-peaks", default=None, help="write peaks with SaveIsawPeaks")
     p.add_argument("--save-ub", default=None, help="write UB with SaveIsawUB")
+    p.add_argument("--detcal", default=None, help="DetCal calibration ('default' for the packaged one)")
+    p.add_argument("--restarts", type=int, default=3, help="maximum orientation-search restarts")
 
     return p.parse_args(argv)
 
@@ -51,13 +54,18 @@ def main(argv=None):
     timing = {}
 
     t = time.perf_counter()
-    info = load_lite(args.lite) if args.lite else load_cg4d_image(args.tiff)
+    detcal = args.detcal
+    if detcal == "default":
+        from .loading import calibration_file
+
+        detcal = calibration_file()
+    info = load_lite(args.lite, detcal=detcal) if args.lite else load_cg4d_image(args.tiff)
     timing["load"] = time.perf_counter() - t
 
     ql = QuasiLaue("data", pixel_shape=info["pixel_shape"])
 
     t = time.perf_counter()
-    kwargs = {"n_sigma": args.n_sigma} if args.peak_method == "local" else {}
+    kwargs = {"local": {"n_sigma": args.n_sigma}, "matched": {"z_min": args.z_min}}.get(args.peak_method, {})
     ql.find_peaks(method=args.peak_method, **kwargs)
     timing["find_peaks"] = time.perf_counter() - t
 
@@ -71,6 +79,7 @@ def main(argv=None):
         angle_tol_deg=args.angle_tol,
         popsize=args.popsize,
         maxiter=args.maxiter,
+        n_restarts=args.restarts,
     )
     timing["find_UB"] = time.perf_counter() - t
 
@@ -93,7 +102,19 @@ def main(argv=None):
     if args.save_peaks:
         SaveIsawPeaks(InputWorkspace=ql.peaks_ws, Filename=args.save_peaks)
 
-    print(json.dumps({"indexed": int(num), "cell": list(ql.opt.get_lattice_constants()), "timing_s": timing}, indent=1))
+    print(
+        json.dumps(
+            {
+                "indexed": int(num),
+                "peaks": int(len(ql.found_coords)),
+                "significance": ql.significance,
+                "detcal": detcal,
+                "cell": list(ql.opt.get_lattice_constants()),
+                "timing_s": timing,
+            },
+            indent=1,
+        )
+    )
 
 
 if __name__ == "__main__":

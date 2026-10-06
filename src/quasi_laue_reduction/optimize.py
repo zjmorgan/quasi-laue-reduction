@@ -1089,11 +1089,20 @@ class CalculateUB:
         n_restarts=3,
         accept_log10_p=-5.0,
         score="threshold",
+        max_chance=0.7,
+        min_informative=40,
         seed=None,
         **de_kwargs,
     ):
         """
         Weighted two-stage orientation search with restarts.
+
+        Only informative peaks take part in the search: a peak whose
+        probability of being matched by a random orientation within
+        ``angle_tol_deg`` exceeds ``max_chance`` (high-angle peaks of large
+        cells at a wide band, whose q-shell holds many directions) adds
+        chance matches as fast as true ones, so it dilutes the objective and
+        the significance. Those peaks are indexed with the final orientation.
 
         For each restart:
 
@@ -1146,6 +1155,14 @@ class CalculateUB:
         score : str, optional
             Search objective, ``"threshold"`` or ``"significance"``; see
             :meth:`minimize`.
+        max_chance : float, optional
+            Largest per-peak chance probability, 1 - exp(-N tol^2 / 4) with
+            N the in-shell candidates, for a peak to be used in the search
+            (``None`` uses every peak). On T4 lysozyme (CG4D run 1816) the
+            significance of the solution peaks broadly at 0.6-0.8.
+        min_informative : int, optional
+            If fewer peaks pass ``max_chance``, the least ambiguous
+            ``min_informative`` peaks are used.
         seed : int, optional
             DE seed of the first restart.
         **de_kwargs
@@ -1174,6 +1191,22 @@ class CalculateUB:
 
         angle_tol = np.deg2rad(angle_tol_deg)
         search_tol = angle_tol if search_tol_deg is None else np.deg2rad(search_tol_deg)
+
+        all_kf, all_weights = kf_ki_dir, weights
+
+        self.prepare_indexer(all_kf, wavelength, ambiguity_power=0.0, force=True, lookup=False)
+        chance = -np.expm1(-self._candidate_counts * angle_tol**2 / 4.0)
+
+        if max_chance is None:
+            informative = np.arange(len(all_kf))
+        else:
+            informative = np.flatnonzero((chance <= max_chance) & (self._candidate_counts > 0))
+            if len(informative) < min(min_informative, len(all_kf)):
+                order = np.argsort(np.where(self._candidate_counts > 0, chance, np.inf))
+                informative = np.sort(order[: min(min_informative, len(all_kf))])
+
+        self.informative = informative
+        kf_ki_dir, weights = all_kf[informative], all_weights[informative]
 
         subset = self.select_coarse_subset(
             kf_ki_dir,
@@ -1246,13 +1279,16 @@ class CalculateUB:
         # the search tolerance), so later index/refine calls use it
         self._score_angle_tol = angle_tol
 
+        # significance of the search peaks, then index every peak
+        self.significance = self.index_significance(kf_ki_dir, wavelength, angle_tol=angle_tol)
+        self.significance["n_informative"] = int(len(informative))
+
         _, num, hkl, lamda = self.index(
-            kf_ki_dir, wavelength, angle_tol=angle_tol, peak_weights=weights, ambiguity_power=ambiguity_power
+            all_kf, wavelength, angle_tol=angle_tol, peak_weights=all_weights, ambiguity_power=ambiguity_power
         )
 
-        self.coarse_subset = subset
-        self.peak_weights = weights
-        self.significance = self.index_significance(kf_ki_dir, wavelength, angle_tol=angle_tol)
+        self.coarse_subset = informative[subset]
+        self.peak_weights = all_weights
 
         UB = self.UB_matrix(self.orientation_U(*self.x), self.reciprocal_lattice_B())
 

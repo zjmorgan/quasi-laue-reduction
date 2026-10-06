@@ -8,6 +8,7 @@ from quasi_laue_reduction.loading import pixel_shape_from_idf, read_lite
 from quasi_laue_reduction.peaks import (
     find_peaks_global,
     find_peaks_local,
+    find_peaks_matched,
     interpolate_positions,
     scattering_directions,
 )
@@ -52,6 +53,39 @@ def test_global_finder_misses_low_background_banks():
     # one threshold for all banks: the quiet first bank is under-detected
     assert found[truth[:, 0] == 2].all()
     assert not found[truth[:, 0] == 0].all()
+
+
+def faint_spots_with_stripe(rng, shape=(128, 128), spots=12, bg=50.0):
+    """Faint, spread spots (peak ~4 sigma per pixel, ~11 sigma summed) and a bright stripe."""
+    ii, jj = np.mgrid[0 : shape[0], 0 : shape[1]]
+    lam = np.full(shape, bg)
+    truth = []
+    grid = [(ci, cj) for ci in (20, 40, 60) for cj in (20, 45, 70, 95)][:spots]
+    for ci, cj in grid:
+        ci, cj = ci + rng.uniform(-2, 2), cj + rng.uniform(-2, 2)
+        lam += 4 * np.sqrt(bg) * np.exp(-0.5 * ((ii - ci) ** 2 + (jj - cj) ** 2) / 1.2**2)
+        truth.append((0, ci, cj))
+    lam[95:97, :] += 3 * np.sqrt(bg)  # line artefact along j
+    return rng.poisson(lam).astype(float)[None], np.array(truth)
+
+
+def test_matched_finder_recovers_faint_spots_and_ignores_stripes():
+    images, truth = faint_spots_with_stripe(np.random.default_rng(1))
+
+    local, _, _ = find_peaks_local(images, n_sigma=8)
+    matched, _, z = find_peaks_matched(images, z_min=5)
+
+    found_local, _ = match(local, truth, 1.5)
+    found, dist = match(matched, truth, 1.5)
+
+    assert found_local.mean() < 0.5
+    assert found.mean() > 0.9
+    assert np.median(dist[found]) < 0.5
+    # no detections on the stripe once it is removed
+    assert not np.any(np.abs(matched[:, 1] - 95.5) < 3)
+
+    unstriped, _, _ = find_peaks_matched(images, z_min=5, destripe_lines=False)
+    assert np.sum(np.abs(unstriped[:, 1] - 95.5) < 3) > 0
 
 
 def test_interpolate_positions_is_bilinear():
