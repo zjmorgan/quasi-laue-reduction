@@ -1,0 +1,4 @@
+{"a": 61.3, "c": 96.4, "c_over_a": 1.5726, "restarts": 1, "misorientation_to_80K_solution_deg": 0.2, "at_0.2": "118/282 vs 62 log10p -9.7", "at_0.35": "201/282 vs 136 log10p -6.8", "at_0.5": "248/282 vs 191 log10p -4.4"}
+{"a": 61.2, "c": 96.8, "c_over_a": 1.5817, "restarts": 2, "misorientation_to_80K_solution_deg": 0.3, "at_0.2": "130/282 vs 62 log10p -13.4", "at_0.35": "205/282 vs 137 log10p -7.5", "at_0.5": "251/282 vs 191 log10p -4.7"}
+{"a": 61.1, "c": 97.0, "c_over_a": 1.5876, "restarts": 1, "misorientation_to_80K_solution_deg": 0.39, "at_0.2": "123/282 vs 62 log10p -11.2", "at_0.35": "214/282 vs 136 log10p -9.3", "at_0.5": "253/282 vs 191 log10p -5.0"}
+CELLS_DONE

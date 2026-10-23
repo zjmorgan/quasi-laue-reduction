@@ -1,0 +1,22 @@
+{
+ "strong_peaks": 282,
+ "faint_spots": 213,
+ "solution": {
+  "low_order_predicted": 59,
+  "low_order_on_a_spot": 0.0847457627118644,
+  "faint_spots_on_prediction": 0.07042253521126761,
+  "dense_predicted": 12328
+ },
+ "random_mean": {
+  "low_order_predicted": 71.1,
+  "low_order_on_a_spot": 0.010739631132225215,
+  "faint_spots_on_prediction": 0.03427230046948356,
+  "dense_predicted": 12331.2
+ },
+ "random_max": {
+  "low_order_predicted": 82.0,
+  "low_order_on_a_spot": 0.04225352112676056,
+  "faint_spots_on_prediction": 0.056338028169014086,
+  "dense_predicted": 12371.0
+ }
+}

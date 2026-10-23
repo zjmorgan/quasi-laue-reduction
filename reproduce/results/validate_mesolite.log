@@ -1,0 +1,82 @@
+FrameworkManager-[Notice] Welcome to Mantid 6.16.20260915.1730
+FrameworkManager-[Notice] Please cite: https://doi.org/10.1016/j.nima.2014.07.029 and this release: https://doi.org/10.5286/Software/Mantid
+DownloadInstrument-[Notice] All instrument definitions up to date
+CreateWorkspace-[Notice] CreateWorkspace started
+CreateWorkspace-[Notice] CreateWorkspace successful, Duration 2.28 seconds
+LoadInstrument-[Notice] LoadInstrument started
+LoadInstrument-[Notice] LoadInstrument successful, Duration 2.87 seconds
+PreprocessDetectorsToMD-[Notice] PreprocessDetectorsToMD started
+PreprocessDetectorsToMD-[Notice] PreprocessDetectorsToMD successful, Duration 1.59 seconds
+DeleteWorkspace-[Notice] DeleteWorkspace started
+DeleteWorkspace-[Notice] DeleteWorkspace successful, Duration 0.00 seconds
+DeleteWorkspace-[Notice] DeleteWorkspace started
+DeleteWorkspace-[Notice] DeleteWorkspace successful, Duration 0.00 seconds
+1132 'Mesolite axis0 = 60 degrees' peaks=17 93s
+1134 'Mesolite axis0 = 62 degrees' peaks=20 93s
+1136 'Mesolite axis0 = 64 degrees' peaks=22 96s
+1138 'Mesolite axis0 = 66 degrees' peaks=23 92s
+1140 'Mesolite axis0 = 68 degrees' peaks=20 93s
+1142 'Mesolite axis0 = 70 degrees' peaks=14 95s
+1144 'Mesolite axis0 = 72 degrees' peaks=12 92s
+1146 'Mesolite axis0 = 74 degrees' peaks=16 91s
+1148 'Mesolite axis0 = 76 degrees' peaks=17 115s
+1150 'Mesolite axis0 = 78 degrees' peaks=17 173s
+1152 'Mesolite axis0 = 80 degrees' peaks=14 210s
+1154 'Mesolite axis0 = 82 degrees' peaks=11 293s
+1156 'Mesolite axis0 = 84 degrees' peaks=13 518s
+1158 'Mesolite axis0 = 86 degrees' peaks=9 373s
+1160 'Mesolite axis0 = 88 degrees' peaks=13 462s
+1162 'Mesolite axis0 = 90 degrees' peaks=5 462s
+1164 'Mesolite axis0 = 92 degrees' peaks=7 528s
+1166 'Mesolite axis0 = 94 degrees' peaks=4 389s
+1168 'Mesolite axis0 = 96 degrees' peaks=5 244s
+1170 'Mesolite axis0 = 98 degrees' peaks=7 212s
+1172 'Mesolite axis0 = 100 degrees' peaks=5 212s
+1174 'Mesolite axis0 = 102 degrees' peaks=6 212s
+1176 'Mesolite axis0 = 104 degrees' peaks=5 213s
+1178 'Mesolite axis0 = 106 degrees' peaks=2 212s
+1180 'Mesolite axis0 = 108 degrees' peaks=4 212s
+1182 'Mesolite axis0 = 110 degrees' peaks=5 212s
+1184 'Mesolite axis0 = 112 degrees' peaks=6 211s
+Traceback (most recent call last):
+  File "/home/zachary/git/quasi-laue-reduction/src/quasi_laue_reduction/loading.py", line 149, in read_lite
+    record = text(entry["process"][key]["data"][()][0])
+                  ~~~~~~~~~~~~~~~~^^^^^
+  File "/home/zachary/miniforge3/envs/garnet/lib/python3.13/site-packages/h5py/_hl/group.py", line 407, in __getitem__
+    return self._get(name)
+           ~~~~~~~~~^^^^^^
+  File "h5py/_objects.pyx", line 54, in h5py._objects.with_phil.wrapper
+  File "h5py/_objects.pyx", line 55, in h5py._objects.with_phil.wrapper
+  File "/home/zachary/miniforge3/envs/garnet/lib/python3.13/site-packages/h5py/_hl/group.py", line 421, in _get
+    oid = h5o.open(self.id, self._e(name), lapl=lapl)
+  File "h5py/_objects.pyx", line 54, in h5py._objects.with_phil.wrapper
+  File "h5py/_objects.pyx", line 55, in h5py._objects.with_phil.wrapper
+  File "h5py/h5o.pyx", line 255, in h5py.h5o.open
+KeyError: "Unable to synchronously open object (file read failed: time = Fri Oct  2 08:31:01 2026\n, filename = '/HFIR/CG4D/IPTS-37331/shared/autoreduce/CG4D_1186.lite.nxs.h5', file descriptor = 3, errno = 5, error message = 'Input/output error', buf = 0x585381394b70, total read size = 512, bytes this sub-read = 512, offset = 633483896)"
+
+During handling of the above exception, another exception occurred:
+
+Traceback (most recent call last):
+  File "/home/zachary/git/quasi-laue-reduction/scripts/validate_calibration.py", line 91, in <module>
+    main()
+    ~~~~^^
+  File "/home/zachary/git/quasi-laue-reduction/scripts/validate_calibration.py", line 66, in main
+    extract_series(lite, args.work)
+    ~~~~~~~~~~~~~~^^^^^^^^^^^^^^^^^
+  File "/home/zachary/git/quasi-laue-reduction/src/quasi_laue_reduction/calibrate.py", line 116, in extract_series
+    info = read_lite(lite)
+  File "/home/zachary/git/quasi-laue-reduction/src/quasi_laue_reduction/loading.py", line 124, in read_lite
+    with h5py.File(filename, "r") as f:
+         ~~~~~~~~~^^^^^^^^^^^^^^^
+  File "h5py/_objects.pyx", line 54, in h5py._objects.with_phil.wrapper
+  File "h5py/_objects.pyx", line 55, in h5py._objects.with_phil.wrapper
+  File "/home/zachary/miniforge3/envs/garnet/lib/python3.13/site-packages/h5py/_hl/files.py", line 638, in __exit__
+    self.close()
+    ~~~~~~~~~~^^
+  File "/home/zachary/miniforge3/envs/garnet/lib/python3.13/site-packages/h5py/_hl/files.py", line 621, in close
+    self.id._close_open_objects(h5f.OBJ_LOCAL | h5f.OBJ_FILE)
+    ~~~~~~~~~~~~~~~~~~~~~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "h5py/_objects.pyx", line 54, in h5py._objects.with_phil.wrapper
+  File "h5py/_objects.pyx", line 55, in h5py._objects.with_phil.wrapper
+  File "h5py/h5f.pyx", line 357, in h5py.h5f.FileID._close_open_objects
+RuntimeError: Can't decrement id ref count (unable to close file, errno = 5, error message = 'Input/output error')

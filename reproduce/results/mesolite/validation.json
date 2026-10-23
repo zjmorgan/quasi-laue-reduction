@@ -1,0 +1,94 @@
+{
+ "nominal": [
+  {
+   "stage": "A goniometer",
+   "train": {
+    "indexed": 72,
+    "of": 834,
+    "fraction": 0.08633093525179857,
+    "median_deg": 0.277900584318037
+   },
+   "test": {
+    "indexed": 54,
+    "of": 811,
+    "fraction": 0.06658446362515413,
+    "median_deg": 0.3541383033376021
+   },
+   "goniometer_axis": [
+    0.71152,
+    0.01663,
+    -0.70247
+   ],
+   "dtheta_rms_deg": 0.2940942728579058
+  },
+  {
+   "stage": "R +cell ratios b/a, c/a",
+   "train": {
+    "indexed": 75,
+    "of": 834,
+    "fraction": 0.08992805755395683,
+    "median_deg": 0.24833238617871103
+   },
+   "test": {
+    "indexed": 51,
+    "of": 811,
+    "fraction": 0.06288532675709001,
+    "median_deg": 0.3510328518914678
+   },
+   "goniometer_axis": [
+    0.71118,
+    0.01546,
+    -0.70284
+   ],
+   "dtheta_rms_deg": 0.37707036782812076,
+   "b_over_a": "3.07227 +- 0.00571",
+   "c_over_a": "0.35301 +- 0.00069"
+  }
+ ],
+ "detcal": [
+  {
+   "stage": "A goniometer",
+   "train": {
+    "indexed": 442,
+    "of": 834,
+    "fraction": 0.5299760191846523,
+    "median_deg": 0.2312027623079388
+   },
+   "test": {
+    "indexed": 319,
+    "of": 811,
+    "fraction": 0.3933415536374846,
+    "median_deg": 0.2708499710280453
+   },
+   "goniometer_axis": [
+    0.00231,
+    -0.99999,
+    -0.00429
+   ],
+   "dtheta_rms_deg": 0.32538126959782787
+  },
+  {
+   "stage": "R +cell ratios b/a, c/a",
+   "train": {
+    "indexed": 464,
+    "of": 834,
+    "fraction": 0.5563549160671463,
+    "median_deg": 0.2283593979131725
+   },
+   "test": {
+    "indexed": 311,
+    "of": 811,
+    "fraction": 0.3834771886559803,
+    "median_deg": 0.28532674429104005
+   },
+   "goniometer_axis": [
+    0.00202,
+    -0.99999,
+    -0.00419
+   ],
+   "dtheta_rms_deg": 0.36991928260377227,
+   "b_over_a": "3.07725 +- 0.00153",
+   "c_over_a": "0.35493 +- 0.00021"
+  }
+ ]
+}

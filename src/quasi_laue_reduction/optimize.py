@@ -1178,6 +1178,10 @@ class CalculateUB:
             Indexed wavelengths with shape (N,).
         num : int
             Number of indexed peaks.
+
+        The result is returned even if no restart reaches ``accept_log10_p``;
+        ``self.significance["accepted"]`` tells whether it did, and
+        ``self.significance["acceptance_log10_p"]`` holds the score used.
         """
         kf_ki_dir = np.asarray(kf_ki_dir, dtype=float)
 
@@ -1282,6 +1286,12 @@ class CalculateUB:
         # significance of the search peaks, then index every peak
         self.significance = self.index_significance(kf_ki_dir, wavelength, angle_tol=angle_tol)
         self.significance["n_informative"] = int(len(informative))
+
+        # acceptance uses the restart score (best of the final and search
+        # tolerances); a pattern that never reaches the threshold is returned
+        # with its best orientation but flagged as not indexed
+        self.significance["acceptance_log10_p"] = best["log10_p_value"]
+        self.significance["accepted"] = bool(accept_log10_p is None or best["log10_p_value"] < accept_log10_p)
 
         _, num, hkl, lamda = self.index(
             all_kf, wavelength, angle_tol=angle_tol, peak_weights=all_weights, ambiguity_power=ambiguity_power

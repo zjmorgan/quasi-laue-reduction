@@ -1,0 +1,176 @@
+{
+ "report": [
+  {
+   "stage": "A goniometer",
+   "train": {
+    "indexed": 441,
+    "of": 1361,
+    "fraction": 0.32402645113886847,
+    "median_deg": 0.21371511501166246
+   },
+   "test": {
+    "indexed": 343,
+    "of": 1361,
+    "fraction": 0.2520205731080088,
+    "median_deg": 0.2233813994597887
+   },
+   "goniometer_axis": [
+    -0.00113,
+    -1.0,
+    0.00291
+   ],
+   "dtheta_rms_deg": 0.1842649529435592
+  },
+  {
+   "stage": "B +relative array yaw",
+   "train": {
+    "indexed": 770,
+    "of": 1361,
+    "fraction": 0.5657604702424688,
+    "median_deg": 0.20001758390175267
+   },
+   "test": {
+    "indexed": 451,
+    "of": 1361,
+    "fraction": 0.331373989713446,
+    "median_deg": 0.230256037066993
+   },
+   "goniometer_axis": [
+    0.00757,
+    -0.99997,
+    -0.00091
+   ],
+   "dtheta_rms_deg": 0.2717150699422434,
+   "relative_yaw_deg": [
+    "-1.0179 +- 0.0675"
+   ]
+  },
+  {
+   "stage": "C +array vertical shifts",
+   "train": {
+    "indexed": 1018,
+    "of": 1361,
+    "fraction": 0.7479794268919912,
+    "median_deg": 0.20061875068298007
+   },
+   "test": {
+    "indexed": 577,
+    "of": 1361,
+    "fraction": 0.4239529757531227,
+    "median_deg": 0.23842333871511873
+   },
+   "goniometer_axis": [
+    0.00384,
+    -0.99998,
+    -0.00402
+   ],
+   "dtheta_rms_deg": 0.2703102786309159,
+   "relative_yaw_deg": [
+    "-0.7783 +- 0.0212"
+   ],
+   "array_vertical_mm": [
+    "2.9054 +- 0.2529",
+    "5.2858 +- 0.1919"
+   ]
+  },
+  {
+   "stage": "D +array horizontal translations",
+   "train": {
+    "indexed": 1219,
+    "of": 1361,
+    "fraction": 0.8956649522409993,
+    "median_deg": 0.18580419634898876
+   },
+   "test": {
+    "indexed": 797,
+    "of": 1361,
+    "fraction": 0.585598824393828,
+    "median_deg": 0.21435217026478998
+   },
+   "goniometer_axis": [
+    -0.003,
+    -0.99997,
+    -0.00704
+   ],
+   "dtheta_rms_deg": 0.27786718681479317,
+   "relative_yaw_deg": [
+    "-1.1875 +- 0.0713"
+   ],
+   "array_vertical_mm": [
+    "6.2681 +- 0.1985",
+    "5.1889 +- 0.1380"
+   ],
+   "array_horizontal_xz_mm": [
+    "-1.5232 +- 0.2547",
+    "-3.7864 +- 0.2708",
+    "3.9939 +- 0.3314",
+    "2.1013 +- 0.5098"
+   ]
+  },
+  {
+   "stage": "E +panel in-plane shifts",
+   "train": {
+    "indexed": 1294,
+    "of": 1361,
+    "fraction": 0.9507714915503307,
+    "median_deg": 0.036202905018044504
+   },
+   "test": {
+    "indexed": 816,
+    "of": 1361,
+    "fraction": 0.5995591476855253,
+    "median_deg": 0.18143469799454204
+   },
+   "goniometer_axis": [
+    -0.00074,
+    -0.99998,
+    -0.00562
+   ],
+   "dtheta_rms_deg": 0.27446069860163574,
+   "relative_yaw_deg": [
+    "-3.6798 +- 0.0778"
+   ],
+   "array_vertical_mm": [
+    "5.3524 +- 0.2433",
+    "6.2246 +- 0.1227"
+   ],
+   "array_horizontal_xz_mm": [
+    "-20.1882 +- 0.3421",
+    "-11.4560 +- 0.3325",
+    "18.7761 +- 0.4427",
+    "-5.0839 +- 0.4751"
+   ],
+   "panel_inplane_mm_rms": 7.65343020510679
+  }
+ ],
+ "selected": "E +panel in-plane shifts",
+ "args": {
+  "name": "garnet",
+  "cell": [
+   11.9386,
+   11.9386,
+   11.9386,
+   90.0,
+   90.0,
+   90.0
+  ],
+  "centering": "I",
+  "ipts": 37331,
+  "runs": [
+   2022,
+   2156,
+   2
+  ],
+  "band": [
+   2.0,
+   10.0
+  ],
+  "tols": [
+   0.5,
+   0.35
+  ],
+  "work": "work/garnet",
+  "n_proc": 16,
+  "extract_only": false
+ }
+}

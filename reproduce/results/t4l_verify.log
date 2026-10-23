@@ -1,0 +1,9 @@
+Found 282 peaks
+{"seed": 1, "indexed": 196, "log10p": -5.986469316450853, "restarts": 2}
+{"seed": 11, "indexed": 195, "log10p": -5.824874843093885, "restarts": 1}
+{"seed": 21, "indexed": 188, "log10p": -4.753784006686328, "restarts": 6}
+{"seed": 31, "indexed": 184, "log10p": -4.189672055012447, "restarts": 6}
+misorientation matrix (deg): [[0.0, 0.02, 0.2, 0.27], [0.02, 0.0, 0.19, 0.25], [0.2, 0.19, 0.0, 0.08], [0.27, 0.25, 0.08, 0.0]]
+Indexed 196 of 282 peaks (random orientations: 136.6 expected; log10 p = -6.0; 2 restart(s))
+PDF written
+VERIFY_DONE

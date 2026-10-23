@@ -286,6 +286,12 @@ class QuasiLaue:
                 len(prim.restarts),
             )
         )
+        if not sig["accepted"]:
+            print(
+                "NOT INDEXED: best restart log10 p = {:.1f} did not reach the acceptance threshold".format(
+                    sig["acceptance_log10_p"]
+                )
+            )
 
         UB = opt.orientation_U(*opt.x) @ opt.reciprocal_lattice_B()
 

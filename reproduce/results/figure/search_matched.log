@@ -1,0 +1,8 @@
+check: recomputed local-8 kf matches saved: True
+{"set": "local8", "seed": 1, "n_peaks": 282, "time_s": 113, "own_0.2": "123 vs 62 (log10p -11.2)", "own_0.35": "212 vs 136 (log10p -8.9)", "ref282_0.2": "123 vs 62 (log10p -11.2)"}
+{"set": "local8", "seed": 2, "n_peaks": 282, "time_s": 53, "own_0.2": "123 vs 62 (log10p -11.2)", "own_0.35": "212 vs 136 (log10p -8.9)", "ref282_0.2": "123 vs 62 (log10p -11.2)"}
+{"set": "matched5_all", "seed": 1, "n_peaks": 833, "time_s": 71, "own_0.2": "434 vs 313 (log10p -10.3)", "own_0.35": "683 vs 548 (log10p -7.8)", "ref282_0.2": "125 vs 62 (log10p -11.8)"}
+{"set": "matched5_all", "seed": 2, "n_peaks": 833, "time_s": 73, "own_0.2": "433 vs 313 (log10p -10.2)", "own_0.35": "685 vs 548 (log10p -8.0)", "ref282_0.2": "123 vs 62 (log10p -11.2)"}
+{"set": "matched5_absgamma<60", "seed": 1, "n_peaks": 487, "time_s": 53, "own_0.2": "181 vs 98 (log10p -13.5)", "own_0.35": "351 vs 228 (log10p -13.6)", "ref282_0.2": "119 vs 62 (log10p -10.1)"}
+{"set": "matched5_absgamma<60", "seed": 2, "n_peaks": 487, "time_s": 52, "own_0.2": "189 vs 98 (log10p -15.8)", "own_0.35": "351 vs 228 (log10p -13.6)", "ref282_0.2": "120 vs 62 (log10p -10.3)"}
+DONE
