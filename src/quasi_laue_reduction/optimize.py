@@ -354,6 +354,7 @@ class CalculateUB:
         max_grid_points=20_000_000,
         force=False,
         lookup=True,
+        max_weight=None,
     ):
         """
         Precompute the HKL table, per-peak q-shell candidates, score weights
@@ -381,6 +382,10 @@ class CalculateUB:
         lookup : bool, optional
             Build the nearest-direction lookup (not needed when only the
             candidate counts are used).
+        max_weight : float, optional
+            Upper limit of the score weights, in units of their mean, so
+            that no single peak (for example a spurious low-angle detection
+            with few candidates) dominates the objective (``None`` disables).
         """
         kf_ki_dir = np.asarray(kf_ki_dir, dtype=float)
         wavelength = tuple(float(x) for x in wavelength)
@@ -447,6 +452,9 @@ class CalculateUB:
 
         if np.max(weights) > 0:
             weights = weights / np.mean(weights[weights > 0])
+
+        if max_weight is not None:
+            weights = np.minimum(weights, max_weight)
 
         self._score_weights = weights
 
@@ -780,6 +788,7 @@ class CalculateUB:
         start_method=None,
         score="threshold",
         angle_floor=np.deg2rad(0.05),
+        max_weight=None,
     ):
         """
         Global orientation search by parallel differential evolution.
@@ -823,6 +832,8 @@ class CalculateUB:
             no tolerance.
         angle_floor : float, optional
             Measurement precision (radians) for the significance score.
+        max_weight : float, optional
+            Cap on the score weights, see :meth:`prepare_indexer`.
 
         Returns
         -------
@@ -850,6 +861,7 @@ class CalculateUB:
             ambiguity_power=ambiguity_power,
             max_grid_points=max_grid_points,
             force=True,
+            max_weight=max_weight,
         )
 
         kwargs = dict(
@@ -1091,6 +1103,7 @@ class CalculateUB:
         score="threshold",
         max_chance=0.7,
         min_informative=40,
+        max_weight=2.0,
         seed=None,
         **de_kwargs,
     ):
@@ -1163,6 +1176,14 @@ class CalculateUB:
         min_informative : int, optional
             If fewer peaks pass ``max_chance``, the least ambiguous
             ``min_informative`` peaks are used.
+        max_weight : float, optional
+            Cap on the search weights in units of their mean (``None``
+            disables). The 1/sqrt(N) ambiguity weighting favours low-angle
+            peaks with few candidates; without the cap, two spurious
+            detections at 2theta < 8 deg in CG4D run 1820 (T4 lysozyme, one
+            with 11% of the total weight) drew every restart to a wrong
+            orientation. A cap of 3 still lost 9 of 12 restarts there, a cap
+            of 2 one of 6.
         seed : int, optional
             DE seed of the first restart.
         **de_kwargs
@@ -1236,6 +1257,7 @@ class CalculateUB:
                 n_reassign=0,
                 seed=None if seed is None else seed + r,
                 score=score,
+                max_weight=max_weight,
                 **de_kwargs,
             )
 

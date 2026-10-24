@@ -58,6 +58,8 @@ Shell drivers (`*.sh`) can be run from anywhere.
 | Table 2, Sec. 4.3: T4 lysozyme run 1816 (229/132, $-13.8$; 127/53, $-17.4$) | stored solution in `figure/t4l_1816_matched.npz`; search timing from `figure/search_auto.py` (`figure/`) | `results/figure/search_auto.log` |
 | Sec. 4.3, Discussion: all peaks vs informative peaks ($-7.9$ vs $-13.3$) | `figure/search_matched.py`, `figure/search_auto.py` (`figure/`) | `results/figure/search_*.log` |
 | Sec. 3.6, 4.3, Discussion: chance fractions (two thirds, 38%) | `figure/chance_cut.py` (`figure/`) | printed |
+| Table 3, Sec. 4.3: rotation series, runs 1816--1826 | `t4l/rotation_series.py` (any; see below) | `results/t4l/rotation_series.log` |
+| Sec. 4.3: run 1820 indexed on its own, five seeds | `t4l/index_1820.py` (any) | `results/t4l/index_1820.log` |
 | Sec. 4.3: 80 K cell, nominal vs calibrated geometry | `t4l/t4l_detcal.sh` | `results/t4l_detcal.log` |
 | Sec. 4.3: 80 K cell, four seeds | `t4l/t4l_verify.sh` | `results/t4l_verify.log` |
 | Sec. 4.3: trial room-temperature cells | `t4l/t4l_cells.py`, `t4l/t4l_cells2.py` (any) | `results/t4l_cells*.log` |
@@ -65,13 +67,32 @@ Shell drivers (`*.sh`) can be run from anywhere.
 | Sec. 4.3: tolerance curve, 95% at $0.7^\circ$, low-angle and edge peaks | `figure/tol_curve.py`, `figure/tol95.py`, `figure/unindexed*.py` (`figure/`) | printed |
 | Fig. T4 lysozyme | `figure/fig_t4l_v2.py` (`figure/`) | PDF |
 | Sec. 4.4, Fig. timing | `benchmarks/bench_search.py`, `benchmarks/bench_search_tree_scipy.py` (driver `benchmarks/queue_tree_scipy.sh`), `figure/fig_timing.py` | `results/benchmarks/search*.jsonl`, `results/bench_*.log` |
-| Appendix D: optimizer comparison | `benchmarks/bench_optimizer.py` (driver `benchmarks/queue_optimizer.sh`) | `results/benchmarks/optimizer.jsonl`, `results/bench_optimizer.log` |
+| Appendix D: optimizer comparison, equal evaluations | `benchmarks/bench_optimizer.py --out optimizer_equal` (driver `benchmarks/queue_optimizer.sh`) | `results/benchmarks/optimizer_equal.jsonl`, `results/bench_optimizer_equal.log` (earlier unequal-budget run: `optimizer.jsonl`) |
 
 Scripts were copied from the working directory in which they were run, with
 absolute paths replaced by `QLR_WORK`, `QLR_FIGURES` and the repository root.
 
-## Known gap
+### Weight cap
 
-- **Table 3 (rotation series, runs 1818--1826).** The script that predicted,
-  refined and scored these runs was not preserved, and their images are not
-  in the working directory. It still has to be recovered or rewritten.
+`find_orientation` caps the search weights at twice their mean
+(`max_weight=2.0`, Sec. 3.4). Table 3, the run-1820 searches and the ten-seed
+results (`results/robust/seeds.jsonl`) were produced with the cap; the cap
+leaves the mesolite and garnet results unchanged (checked on all ten mesolite
+seeds and 12 of the 93 garnet settings). The null searches, the spurious-peak
+test and the optimizer comparison were rerun with the cap (the spurious-peak
+results are unchanged). The timing benchmarks predate it; the cap does not
+change the cost of an evaluation.
+
+## Rotation series (Table 3)
+
+`t4l/rotation_series.py` follows the script that produced the published table,
+recovered from the session in which it was run. Run 1816 is indexed by the global
+search (seed 1, three restarts) and refined; each later run is predicted from the
+previous refined orientation rotated by $10^\circ$ about the vertical axis, scored,
+refined locally (orientation and $c/a$, tolerance schedule $1^\circ$ to $0.2^\circ$)
+and scored again, every run starting from the same cell (61.1, 61.1, 96.84 Å).
+It reproduces rows 1818--1826 of Table 3 exactly, the opposite-sense test for
+run 1818 ($\log_{10}p=-1.7$) and the total rotation ($49.5^\circ$ about an axis
+$1.1^\circ$ from vertical). Runs 1818--1826 need the lite files in
+`$QLR_CG4D_AUTOREDUCE` (default `/HFIR/CG4D/IPTS-37331/shared/autoreduce`);
+their peaks are cached in `$QLR_WORK/series/` after the first read.
