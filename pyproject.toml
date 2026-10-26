@@ -12,7 +12,7 @@ dependencies = [
   "pillow",
 ]
 license = { text = "GPL-3.0" }
-authors = [{ name = "Zachary Morgan", email = "zjmorgan@mtu.edu" }]
+authors = [{ name = "Zachary Morgan", email = "zmorgan@kettering.edu" }]
 
 [project.scripts]
 quasi-laue = "quasi_laue_reduction.cli:main"

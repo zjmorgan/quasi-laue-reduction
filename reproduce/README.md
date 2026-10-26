@@ -67,7 +67,7 @@ Shell drivers (`*.sh`) can be run from anywhere.
 | Sec. 4.3: tolerance curve, 95% at $0.7^\circ$, low-angle and edge peaks | `figure/tol_curve.py`, `figure/tol95.py`, `figure/unindexed*.py` (`figure/`) | printed |
 | Fig. T4 lysozyme | `figure/fig_t4l_v2.py` (`figure/`) | PDF |
 | Sec. 4.4, Fig. timing | `benchmarks/bench_search.py`, `benchmarks/bench_search_tree_scipy.py` (driver `benchmarks/queue_tree_scipy.sh`), `figure/fig_timing.py` | `results/benchmarks/search*.jsonl`, `results/bench_*.log` |
-| Appendix D: optimizer comparison, equal evaluations | `benchmarks/bench_optimizer.py --out optimizer_equal` (driver `benchmarks/queue_optimizer.sh`) | `results/benchmarks/optimizer_equal.jsonl`, `results/bench_optimizer_equal.log` (earlier unequal-budget run: `optimizer.jsonl`) |
+| Appendix D: optimizer comparison, equal evaluations | `benchmarks/bench_optimizer.py --out optimizer_equal` (driver `benchmarks/queue_optimizer.sh`) | `results/benchmarks/optimizer_equal.jsonl`, `results/bench_optimizer_equal.log` |
 
 Scripts were copied from the working directory in which they were run, with
 absolute paths replaced by `QLR_WORK`, `QLR_FIGURES` and the repository root.
