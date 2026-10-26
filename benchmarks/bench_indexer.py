@@ -7,7 +7,7 @@ import time
 
 import numpy as np
 
-import legacy_optimize_refine_ub as legacy
+import baseline_scan as legacy
 from common import arguments, load_peaks, save
 from quasi_laue_reduction import optimize
 from quasi_laue_reduction.optimize import CalculateUB

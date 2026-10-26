@@ -1,7 +1,9 @@
 # Baseline for benchmarks: the orientation optimizer as it stood before the
 # KD-tree indexer and persistent worker pool (copied unchanged from
 # /HFIR/CG4D/shared/instrument/mantid/optimize_refine_ub.py, 2026-07-05).
-# Not used by the package.
+# It is the "candidate scan" of the timing figure and the reference for the
+# 270-fold speed-up in the paper (bench_search.py, bench_indexer.py, variant
+# "legacy"). Not used by the package.
 import os
 
 os.environ["OMP_NUM_THREADS"] = "1"

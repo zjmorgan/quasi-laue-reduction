@@ -1,12 +1,12 @@
 """
-T4 lysozyme, IMAGINE geometry on CG4D (IPTS-37331, run 1816).
+T4 lysozyme on IMAGINE-X (IPTS-37331, run 1816), full 2-10 A band.
 
-Status: does not index yet. On synthetic data with this cell the search
-recovers the orientation reliably, but on this run no orientation separates
-from random; see README ("Test cases").
+The settings of the paper: garnet-calibrated geometry, matched-filter peaks,
+room-temperature cell. Indexing a protein cell at this band needs the
+calibration.
 """
 
-from quasi_laue_reduction.loading import load_lite
+from quasi_laue_reduction.loading import calibration_file, load_lite
 from quasi_laue_reduction.workflow import QuasiLaue
 
 IPTS = 37331
@@ -15,19 +15,19 @@ run = 1816
 filename = "/HFIR/CG4D/IPTS-{}/shared/autoreduce/CG4D_{}.lite.nxs.h5".format(IPTS, run)
 
 ### sample info ###
-# 5VNQ (80 K): a = b = 61.5, c = 95.9; room temperature ~ 61.2 / 96.8
-a, b, c = 61.1, 61.1, 97.0
+# room-temperature cell refined from this run (5VNQ at 80 K: c/a = 1.559)
+a, b, c = 61.1, 61.1, 96.84
 alpha, beta, gamma = 90, 90, 120
 centering = "P"
 cell = "Hexagonal"
 ### ----------- ###
 
-wavelength_band = [2.8, 4.6]
+wavelength_band = [2.0, 10.0]
 
-info = load_lite(filename, ws="data")
+info = load_lite(filename, ws="data", detcal=calibration_file())
 
 ql = QuasiLaue("data", pixel_shape=info["pixel_shape"])
-ql.find_peaks(method="local", n_sigma=8)
+ql.find_peaks(method="matched", z_min=5)
 ql.find_UB(a, b, c, alpha, beta, gamma, wavelength_band, centering=centering, n_proc=-1, seed=1)
 ql.predict_peaks(wavelength_band, d_min=2.5)
 ql.plot_detector()
