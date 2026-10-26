@@ -1,0 +1,361 @@
+FrameworkManager-[Notice] Welcome to Mantid 6.16.20260915.1730
+FrameworkManager-[Notice] Please cite: https://doi.org/10.1016/j.nima.2014.07.029 and this release: https://doi.org/10.5286/Software/Mantid
+DownloadInstrument-[Notice] All instrument definitions up to date
+CreateWorkspace-[Notice] CreateWorkspace started
+CreateWorkspace-[Notice] CreateWorkspace successful, Duration 18.27 seconds
+LoadInstrument-[Notice] LoadInstrument started
+LoadInstrument-[Notice] LoadInstrument successful, Duration 30.74 seconds
+AddSampleLog-[Notice] AddSampleLog started
+AddSampleLog-[Notice] AddSampleLog successful, Duration 0.00 seconds
+PreprocessDetectorsToMD-[Notice] PreprocessDetectorsToMD started
+PreprocessDetectorsToMD-[Notice] PreprocessDetectorsToMD successful, Duration 10.56 seconds
+CreatePeaksWorkspace-[Notice] CreatePeaksWorkspace started
+CreatePeaksWorkspace-[Notice] CreatePeaksWorkspace successful, Duration 0.00 seconds
+AddPeak-[Notice] AddPeak started
+AddPeak-[Notice] AddPeak successful, Duration 0.00 seconds
+AddPeak-[Notice] AddPeak started
+AddPeak-[Notice] AddPeak successful, Duration 0.00 seconds
+AddPeak-[Notice] AddPeak started
+AddPeak-[Notice] AddPeak successful, Duration 0.00 seconds
+AddPeak-[Notice] AddPeak started
+AddPeak-[Notice] AddPeak successful, Duration 0.00 seconds
+AddPeak-[Notice] AddPeak started
+AddPeak-[Notice] AddPeak successful, Duration 0.00 seconds
+AddPeak-[Notice] AddPeak started
+AddPeak-[Notice] AddPeak successful, Duration 0.00 seconds
+AddPeak-[Notice] AddPeak started
+AddPeak-[Notice] AddPeak successful, Duration 0.00 seconds
+AddPeak-[Notice] AddPeak started
+AddPeak-[Notice] AddPeak successful, Duration 0.00 seconds
+AddPeak-[Notice] AddPeak started
+AddPeak-[Notice] AddPeak successful, Duration 0.00 seconds
+AddPeak-[Notice] AddPeak started
+AddPeak-[Notice] AddPeak successful, Duration 0.00 seconds
+AddPeak-[Notice] AddPeak started
+AddPeak-[Notice] AddPeak successful, Duration 0.00 seconds
+AddPeak-[Notice] AddPeak started
+AddPeak-[Notice] AddPeak successful, Duration 0.00 seconds
+AddPeak-[Notice] AddPeak started
+AddPeak-[Notice] AddPeak successful, Duration 0.00 seconds
+AddPeak-[Notice] AddPeak started
+AddPeak-[Notice] AddPeak successful, Duration 0.00 seconds
+AddPeak-[Notice] AddPeak started
+AddPeak-[Notice] AddPeak successful, Duration 0.00 seconds
+AddPeak-[Notice] AddPeak started
+AddPeak-[Notice] AddPeak successful, Duration 0.00 seconds
+AddPeak-[Notice] AddPeak started
+AddPeak-[Notice] AddPeak successful, Duration 0.00 seconds
+AddPeak-[Notice] AddPeak started
+AddPeak-[Notice] AddPeak successful, Duration 0.00 seconds
+AddPeak-[Notice] AddPeak started
+AddPeak-[Notice] AddPeak successful, Duration 0.00 seconds
+AddPeak-[Notice] AddPeak started
+AddPeak-[Notice] AddPeak successful, Duration 0.00 seconds
+AddPeak-[Notice] AddPeak started
+AddPeak-[Notice] AddPeak successful, Duration 0.00 seconds
+AddPeak-[Notice] AddPeak started
+AddPeak-[Notice] AddPeak successful, Duration 0.00 seconds
+AddPeak-[Notice] AddPeak started
+AddPeak-[Notice] AddPeak successful, Duration 0.00 seconds
+AddPeak-[Notice] AddPeak started
+AddPeak-[Notice] AddPeak successful, Duration 0.00 seconds
+AddPeak-[Notice] AddPeak started
+AddPeak-[Notice] AddPeak successful, Duration 0.00 seconds
+AddPeak-[Notice] AddPeak started
+AddPeak-[Notice] AddPeak successful, Duration 0.00 seconds
+AddPeak-[Notice] AddPeak started
+AddPeak-[Notice] AddPeak successful, Duration 0.00 seconds
+AddPeak-[Notice] AddPeak started
+AddPeak-[Notice] AddPeak successful, Duration 0.00 seconds
+AddPeak-[Notice] AddPeak started
+AddPeak-[Notice] AddPeak successful, Duration 0.00 seconds
+AddPeak-[Notice] AddPeak started
+AddPeak-[Notice] AddPeak successful, Duration 0.00 seconds
+AddPeak-[Notice] AddPeak started
+AddPeak-[Notice] AddPeak successful, Duration 0.00 seconds
+AddPeak-[Notice] AddPeak started
+AddPeak-[Notice] AddPeak successful, Duration 0.00 seconds
+AddPeak-[Notice] AddPeak started
+AddPeak-[Notice] AddPeak successful, Duration 0.00 seconds
+AddPeak-[Notice] AddPeak started
+AddPeak-[Notice] AddPeak successful, Duration 0.00 seconds
+AddPeak-[Notice] AddPeak started
+AddPeak-[Notice] AddPeak successful, Duration 0.00 seconds
+AddPeak-[Notice] AddPeak started
+AddPeak-[Notice] AddPeak successful, Duration 0.00 seconds
+AddPeak-[Notice] AddPeak started
+AddPeak-[Notice] AddPeak successful, Duration 0.00 seconds
+AddPeak-[Notice] AddPeak started
+AddPeak-[Notice] AddPeak successful, Duration 0.00 seconds
+AddPeak-[Notice] AddPeak started
+AddPeak-[Notice] AddPeak successful, Duration 0.00 seconds
+AddPeak-[Notice] AddPeak started
+AddPeak-[Notice] AddPeak successful, Duration 0.00 seconds
+AddPeak-[Notice] AddPeak started
+AddPeak-[Notice] AddPeak successful, Duration 0.00 seconds
+AddPeak-[Notice] AddPeak started
+AddPeak-[Notice] AddPeak successful, Duration 0.00 seconds
+AddPeak-[Notice] AddPeak started
+AddPeak-[Notice] AddPeak successful, Duration 0.00 seconds
+AddPeak-[Notice] AddPeak started
+AddPeak-[Notice] AddPeak successful, Duration 0.00 seconds
+AddPeak-[Notice] AddPeak started
+AddPeak-[Notice] AddPeak successful, Duration 0.00 seconds
+AddPeak-[Notice] AddPeak started
+AddPeak-[Notice] AddPeak successful, Duration 0.00 seconds
+AddPeak-[Notice] AddPeak started
+AddPeak-[Notice] AddPeak successful, Duration 0.00 seconds
+AddPeak-[Notice] AddPeak started
+AddPeak-[Notice] AddPeak successful, Duration 0.00 seconds
+AddPeak-[Notice] AddPeak started
+AddPeak-[Notice] AddPeak successful, Duration 0.00 seconds
+AddPeak-[Notice] AddPeak started
+AddPeak-[Notice] AddPeak successful, Duration 0.00 seconds
+AddPeak-[Notice] AddPeak started
+AddPeak-[Notice] AddPeak successful, Duration 0.00 seconds
+AddPeak-[Notice] AddPeak started
+AddPeak-[Notice] AddPeak successful, Duration 0.00 seconds
+AddPeak-[Notice] AddPeak started
+AddPeak-[Notice] AddPeak successful, Duration 0.00 seconds
+AddPeak-[Notice] AddPeak started
+AddPeak-[Notice] AddPeak successful, Duration 0.00 seconds
+AddPeak-[Notice] AddPeak started
+AddPeak-[Notice] AddPeak successful, Duration 0.00 seconds
+AddPeak-[Notice] AddPeak started
+AddPeak-[Notice] AddPeak successful, Duration 0.00 seconds
+AddPeak-[Notice] AddPeak started
+AddPeak-[Notice] AddPeak successful, Duration 0.00 seconds
+AddPeak-[Notice] AddPeak started
+AddPeak-[Notice] AddPeak successful, Duration 0.00 seconds
+AddPeak-[Notice] AddPeak started
+AddPeak-[Notice] AddPeak successful, Duration 0.00 seconds
+AddPeak-[Notice] AddPeak started
+AddPeak-[Notice] AddPeak successful, Duration 0.00 seconds
+AddPeak-[Notice] AddPeak started
+AddPeak-[Notice] AddPeak successful, Duration 0.00 seconds
+AddPeak-[Notice] AddPeak started
+AddPeak-[Notice] AddPeak successful, Duration 0.00 seconds
+AddPeak-[Notice] AddPeak started
+AddPeak-[Notice] AddPeak successful, Duration 0.00 seconds
+AddPeak-[Notice] AddPeak started
+AddPeak-[Notice] AddPeak successful, Duration 0.00 seconds
+AddPeak-[Notice] AddPeak started
+AddPeak-[Notice] AddPeak successful, Duration 0.00 seconds
+AddPeak-[Notice] AddPeak started
+AddPeak-[Notice] AddPeak successful, Duration 0.00 seconds
+AddPeak-[Notice] AddPeak started
+AddPeak-[Notice] AddPeak successful, Duration 0.00 seconds
+AddPeak-[Notice] AddPeak started
+AddPeak-[Notice] AddPeak successful, Duration 0.00 seconds
+AddPeak-[Notice] AddPeak started
+AddPeak-[Notice] AddPeak successful, Duration 0.00 seconds
+AddPeak-[Notice] AddPeak started
+AddPeak-[Notice] AddPeak successful, Duration 0.00 seconds
+AddPeak-[Notice] AddPeak started
+AddPeak-[Notice] AddPeak successful, Duration 0.00 seconds
+AddPeak-[Notice] AddPeak started
+AddPeak-[Notice] AddPeak successful, Duration 0.00 seconds
+AddPeak-[Notice] AddPeak started
+AddPeak-[Notice] AddPeak successful, Duration 0.00 seconds
+AddPeak-[Notice] AddPeak started
+AddPeak-[Notice] AddPeak successful, Duration 0.00 seconds
+AddPeak-[Notice] AddPeak started
+AddPeak-[Notice] AddPeak successful, Duration 0.00 seconds
+AddPeak-[Notice] AddPeak started
+AddPeak-[Notice] AddPeak successful, Duration 0.00 seconds
+AddPeak-[Notice] AddPeak started
+AddPeak-[Notice] AddPeak successful, Duration 0.00 seconds
+AddPeak-[Notice] AddPeak started
+AddPeak-[Notice] AddPeak successful, Duration 0.00 seconds
+AddPeak-[Notice] AddPeak started
+AddPeak-[Notice] AddPeak successful, Duration 0.00 seconds
+AddPeak-[Notice] AddPeak started
+AddPeak-[Notice] AddPeak successful, Duration 0.00 seconds
+AddPeak-[Notice] AddPeak started
+AddPeak-[Notice] AddPeak successful, Duration 0.00 seconds
+AddPeak-[Notice] AddPeak started
+AddPeak-[Notice] AddPeak successful, Duration 0.00 seconds
+AddPeak-[Notice] AddPeak started
+AddPeak-[Notice] AddPeak successful, Duration 0.00 seconds
+AddPeak-[Notice] AddPeak started
+AddPeak-[Notice] AddPeak successful, Duration 0.00 seconds
+AddPeak-[Notice] AddPeak started
+AddPeak-[Notice] AddPeak successful, Duration 0.00 seconds
+AddPeak-[Notice] AddPeak started
+AddPeak-[Notice] AddPeak successful, Duration 0.00 seconds
+AddPeak-[Notice] AddPeak started
+AddPeak-[Notice] AddPeak successful, Duration 0.00 seconds
+AddPeak-[Notice] AddPeak started
+AddPeak-[Notice] AddPeak successful, Duration 0.00 seconds
+AddPeak-[Notice] AddPeak started
+AddPeak-[Notice] AddPeak successful, Duration 0.00 seconds
+AddPeak-[Notice] AddPeak started
+AddPeak-[Notice] AddPeak successful, Duration 0.00 seconds
+AddPeak-[Notice] AddPeak started
+AddPeak-[Notice] AddPeak successful, Duration 0.00 seconds
+AddPeak-[Notice] AddPeak started
+AddPeak-[Notice] AddPeak successful, Duration 0.00 seconds
+AddPeak-[Notice] AddPeak started
+AddPeak-[Notice] AddPeak successful, Duration 0.00 seconds
+AddPeak-[Notice] AddPeak started
+AddPeak-[Notice] AddPeak successful, Duration 0.00 seconds
+AddPeak-[Notice] AddPeak started
+AddPeak-[Notice] AddPeak successful, Duration 0.00 seconds
+AddPeak-[Notice] AddPeak started
+AddPeak-[Notice] AddPeak successful, Duration 0.00 seconds
+AddPeak-[Notice] AddPeak started
+AddPeak-[Notice] AddPeak successful, Duration 0.00 seconds
+AddPeak-[Notice] AddPeak started
+AddPeak-[Notice] AddPeak successful, Duration 0.00 seconds
+AddPeak-[Notice] AddPeak started
+AddPeak-[Notice] AddPeak successful, Duration 0.00 seconds
+AddPeak-[Notice] AddPeak started
+AddPeak-[Notice] AddPeak successful, Duration 0.00 seconds
+AddPeak-[Notice] AddPeak started
+AddPeak-[Notice] AddPeak successful, Duration 0.00 seconds
+AddPeak-[Notice] AddPeak started
+AddPeak-[Notice] AddPeak successful, Duration 0.00 seconds
+AddPeak-[Notice] AddPeak started
+AddPeak-[Notice] AddPeak successful, Duration 0.00 seconds
+AddPeak-[Notice] AddPeak started
+AddPeak-[Notice] AddPeak successful, Duration 0.00 seconds
+AddPeak-[Notice] AddPeak started
+AddPeak-[Notice] AddPeak successful, Duration 0.00 seconds
+AddPeak-[Notice] AddPeak started
+AddPeak-[Notice] AddPeak successful, Duration 0.00 seconds
+AddPeak-[Notice] AddPeak started
+AddPeak-[Notice] AddPeak successful, Duration 0.00 seconds
+AddPeak-[Notice] AddPeak started
+AddPeak-[Notice] AddPeak successful, Duration 0.00 seconds
+AddPeak-[Notice] AddPeak started
+AddPeak-[Notice] AddPeak successful, Duration 0.00 seconds
+AddPeak-[Notice] AddPeak started
+AddPeak-[Notice] AddPeak successful, Duration 0.00 seconds
+AddPeak-[Notice] AddPeak started
+AddPeak-[Notice] AddPeak successful, Duration 0.00 seconds
+AddPeak-[Notice] AddPeak started
+AddPeak-[Notice] AddPeak successful, Duration 0.00 seconds
+AddPeak-[Notice] AddPeak started
+AddPeak-[Notice] AddPeak successful, Duration 0.00 seconds
+AddPeak-[Notice] AddPeak started
+AddPeak-[Notice] AddPeak successful, Duration 0.00 seconds
+AddPeak-[Notice] AddPeak started
+AddPeak-[Notice] AddPeak successful, Duration 0.00 seconds
+AddPeak-[Notice] AddPeak started
+AddPeak-[Notice] AddPeak successful, Duration 0.00 seconds
+AddPeak-[Notice] AddPeak started
+AddPeak-[Notice] AddPeak successful, Duration 0.00 seconds
+AddPeak-[Notice] AddPeak started
+AddPeak-[Notice] AddPeak successful, Duration 0.00 seconds
+AddPeak-[Notice] AddPeak started
+AddPeak-[Notice] AddPeak successful, Duration 0.00 seconds
+AddPeak-[Notice] AddPeak started
+AddPeak-[Notice] AddPeak successful, Duration 0.00 seconds
+AddPeak-[Notice] AddPeak started
+AddPeak-[Notice] AddPeak successful, Duration 0.00 seconds
+AddPeak-[Notice] AddPeak started
+AddPeak-[Notice] AddPeak successful, Duration 0.00 seconds
+AddPeak-[Notice] AddPeak started
+AddPeak-[Notice] AddPeak successful, Duration 0.00 seconds
+AddPeak-[Notice] AddPeak started
+AddPeak-[Notice] AddPeak successful, Duration 0.00 seconds
+AddPeak-[Notice] AddPeak started
+AddPeak-[Notice] AddPeak successful, Duration 0.00 seconds
+AddPeak-[Notice] AddPeak started
+AddPeak-[Notice] AddPeak successful, Duration 0.00 seconds
+AddPeak-[Notice] AddPeak started
+AddPeak-[Notice] AddPeak successful, Duration 0.00 seconds
+AddPeak-[Notice] AddPeak started
+AddPeak-[Notice] AddPeak successful, Duration 0.00 seconds
+AddPeak-[Notice] AddPeak started
+AddPeak-[Notice] AddPeak successful, Duration 0.00 seconds
+AddPeak-[Notice] AddPeak started
+AddPeak-[Notice] AddPeak successful, Duration 0.00 seconds
+AddPeak-[Notice] AddPeak started
+AddPeak-[Notice] AddPeak successful, Duration 0.00 seconds
+AddPeak-[Notice] AddPeak started
+AddPeak-[Notice] AddPeak successful, Duration 0.00 seconds
+AddPeak-[Notice] AddPeak started
+AddPeak-[Notice] AddPeak successful, Duration 0.00 seconds
+AddPeak-[Notice] AddPeak started
+AddPeak-[Notice] AddPeak successful, Duration 0.00 seconds
+AddPeak-[Notice] AddPeak started
+AddPeak-[Notice] AddPeak successful, Duration 0.00 seconds
+AddPeak-[Notice] AddPeak started
+AddPeak-[Notice] AddPeak successful, Duration 0.00 seconds
+AddPeak-[Notice] AddPeak started
+AddPeak-[Notice] AddPeak successful, Duration 0.00 seconds
+AddPeak-[Notice] AddPeak started
+AddPeak-[Notice] AddPeak successful, Duration 0.00 seconds
+AddPeak-[Notice] AddPeak started
+AddPeak-[Notice] AddPeak successful, Duration 0.00 seconds
+AddPeak-[Notice] AddPeak started
+AddPeak-[Notice] AddPeak successful, Duration 0.00 seconds
+AddPeak-[Notice] AddPeak started
+AddPeak-[Notice] AddPeak successful, Duration 0.00 seconds
+AddPeak-[Notice] AddPeak started
+AddPeak-[Notice] AddPeak successful, Duration 0.00 seconds
+AddPeak-[Notice] AddPeak started
+AddPeak-[Notice] AddPeak successful, Duration 0.00 seconds
+AddPeak-[Notice] AddPeak started
+AddPeak-[Notice] AddPeak successful, Duration 0.00 seconds
+AddPeak-[Notice] AddPeak started
+AddPeak-[Notice] AddPeak successful, Duration 0.00 seconds
+AddPeak-[Notice] AddPeak started
+AddPeak-[Notice] AddPeak successful, Duration 0.00 seconds
+AddPeak-[Notice] AddPeak started
+AddPeak-[Notice] AddPeak successful, Duration 0.00 seconds
+AddPeak-[Notice] AddPeak started
+AddPeak-[Notice] AddPeak successful, Duration 0.00 seconds
+AddPeak-[Notice] AddPeak started
+AddPeak-[Notice] AddPeak successful, Duration 0.00 seconds
+AddPeak-[Notice] AddPeak started
+AddPeak-[Notice] AddPeak successful, Duration 0.00 seconds
+AddPeak-[Notice] AddPeak started
+AddPeak-[Notice] AddPeak successful, Duration 0.00 seconds
+AddPeak-[Notice] AddPeak started
+AddPeak-[Notice] AddPeak successful, Duration 0.00 seconds
+AddPeak-[Notice] AddPeak started
+AddPeak-[Notice] AddPeak successful, Duration 0.00 seconds
+AddPeak-[Notice] AddPeak started
+AddPeak-[Notice] AddPeak successful, Duration 0.00 seconds
+AddPeak-[Notice] AddPeak started
+AddPeak-[Notice] AddPeak successful, Duration 0.00 seconds
+AddPeak-[Notice] AddPeak started
+AddPeak-[Notice] AddPeak successful, Duration 0.00 seconds
+AddPeak-[Notice] AddPeak started
+AddPeak-[Notice] AddPeak successful, Duration 0.00 seconds
+AddPeak-[Notice] AddPeak started
+AddPeak-[Notice] AddPeak successful, Duration 0.00 seconds
+AddPeak-[Notice] AddPeak started
+AddPeak-[Notice] AddPeak successful, Duration 0.00 seconds
+AddPeak-[Notice] AddPeak started
+AddPeak-[Notice] AddPeak successful, Duration 0.00 seconds
+AddPeak-[Notice] AddPeak started
+AddPeak-[Notice] AddPeak successful, Duration 0.00 seconds
+AddPeak-[Notice] AddPeak started
+AddPeak-[Notice] AddPeak successful, Duration 0.00 seconds
+AddPeak-[Notice] AddPeak started
+AddPeak-[Notice] AddPeak successful, Duration 0.00 seconds
+AddPeak-[Notice] AddPeak started
+AddPeak-[Notice] AddPeak successful, Duration 0.00 seconds
+AddPeak-[Notice] AddPeak started
+AddPeak-[Notice] AddPeak successful, Duration 0.00 seconds
+AddPeak-[Notice] AddPeak started
+AddPeak-[Notice] AddPeak successful, Duration 0.00 seconds
+AddPeak-[Notice] AddPeak started
+AddPeak-[Notice] AddPeak successful, Duration 0.00 seconds
+AddPeak-[Notice] AddPeak started
+AddPeak-[Notice] AddPeak successful, Duration 0.00 seconds
+AddPeak-[Notice] AddPeak started
+AddPeak-[Notice] AddPeak successful, Duration 0.00 seconds
+AddPeak-[Notice] AddPeak started
+AddPeak-[Notice] AddPeak successful, Duration 0.00 seconds
+AddPeak-[Notice] AddPeak started
+AddPeak-[Notice] AddPeak successful, Duration 0.00 seconds
+AddPeak-[Notice] AddPeak started
+AddPeak-[Notice] AddPeak successful, Duration 0.00 seconds
+AddPeak-[Notice] AddPeak started
+AddPeak-[Notice] AddPeak successful, Duration 0.00 seconds
+Found 173 peaks
+mesolite peaks 173

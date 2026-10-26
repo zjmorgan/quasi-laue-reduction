@@ -1,0 +1,231 @@
+1186 'Mesolite axis0 = 114 degrees' peaks=7 433s
+1188 'Mesolite axis0 = 116 degrees' peaks=4 378s
+1190 'Mesolite axis0 = 118 degrees' peaks=3 416s
+1192 'Mesolite axis0 = 120 degrees' peaks=5 465s
+1194 'Mesolite axis0 = 122 degrees' peaks=4 334s
+1196 'Mesolite axis0 = 124 degrees' peaks=3 177s
+1198 'Mesolite axis0 = 126 degrees' peaks=5 246s
+1200 'Mesolite axis0 = 128 degrees' peaks=3 213s
+1286 'Mesolite axis0 = 214 degrees' peaks=28 227s
+1288 'Mesolite axis0 = 216 degrees' peaks=25 331s
+1290 'Mesolite axis0 = 218 degrees' peaks=31 215s
+1292 'Mesolite axis0 = 220 degrees' peaks=29 267s
+1294 'Mesolite axis0 = 222 degrees' peaks=32 270s
+1296 'Mesolite axis0 = 224 degrees' peaks=34 211s
+1298 'Mesolite axis0 = 226 degrees' peaks=34 241s
+1300 'Mesolite axis0 = 228 degrees' peaks=29 173s
+1302 'Mesolite axis0 = 230 degrees' peaks=27 202s
+1304 'Mesolite axis0 = 232 degrees' peaks=28 224s
+1306 'Mesolite axis0 = 234 degrees' peaks=31 241s
+1308 'Mesolite axis0 = 236 degrees' peaks=35 220s
+1310 'Mesolite axis0 = 238 degrees' peaks=31 318s
+1312 'Mesolite axis0 = 240 degrees' peaks=33 251s
+1314 'Mesolite axis0 = 242 degrees' peaks=33 251s
+1316 'Mesolite axis0 = 244 degrees' peaks=30 219s
+1318 'Mesolite axis0 = 246 degrees' peaks=30 94s
+1320 'Mesolite axis0 = 248 degrees' peaks=27 89s
+1322 'Mesolite axis0 = 250 degrees' peaks=26 87s
+1324 'Mesolite axis0 = 252 degrees' peaks=35 80s
+1326 'Mesolite axis0 = 254 degrees' peaks=32 79s
+1328 'Mesolite axis0 = 256 degrees' peaks=28 90s
+1330 'Mesolite axis0 = 258 degrees' peaks=26 96s
+1332 'Mesolite axis0 = 260 degrees' peaks=26 82s
+1334 'Mesolite axis0 = 262 degrees' peaks=30 87s
+1336 'Mesolite axis0 = 264 degrees' peaks=31 84s
+1338 'Mesolite axis0 = 266 degrees' peaks=26 92s
+1340 'Mesolite axis0 = 268 degrees' peaks=30 87s
+1342 'Mesolite axis0 = 270 degrees' peaks=26 84s
+1344 'Mesolite axis0 = 272 degrees' peaks=23 86s
+1346 'Mesolite axis0 = 274 degrees' peaks=24 78s
+1348 'Mesolite axis0 = 276 degrees' peaks=32 84s
+1350 'Mesolite axis0 = 278 degrees' peaks=33 83s
+1352 'Mesolite axis0 = 280 degrees' peaks=28 87s
+1354 'Mesolite axis0 = 282 degrees' peaks=31 84s
+1356 'Mesolite axis0 = 284 degrees' peaks=33 79s
+1358 'Mesolite axis0 = 286 degrees' peaks=35 82s
+1360 'Mesolite axis0 = 288 degrees' peaks=38 82s
+1362 'Mesolite axis0 = 290 degrees' peaks=24 82s
+1364 'Mesolite axis0 = 292 degrees' peaks=31 80s
+1366 'Mesolite axis0 = 294 degrees' peaks=31 88s
+1368 'Mesolite axis0 = 296 degrees' peaks=30 78s
+1370 'Mesolite axis0 = 298 degrees' peaks=32 79s
+1372 'Mesolite axis0 = 300 degrees' peaks=24 88s
+FrameworkManager-[Notice] Welcome to Mantid 6.16.20260915.1730
+FrameworkManager-[Notice] Please cite: https://doi.org/10.1016/j.nima.2014.07.029 and this release: https://doi.org/10.5286/Software/Mantid
+DownloadInstrument-[Notice] All instrument definitions up to date
+CreateWorkspace-[Notice] CreateWorkspace started
+CreateWorkspace-[Notice] CreateWorkspace successful, Duration 2.42 seconds
+LoadInstrument-[Notice] LoadInstrument started
+LoadInstrument-[Notice] LoadInstrument successful, Duration 2.90 seconds
+PreprocessDetectorsToMD-[Notice] PreprocessDetectorsToMD started
+PreprocessDetectorsToMD-[Notice] PreprocessDetectorsToMD successful, Duration 1.59 seconds
+DeleteWorkspace-[Notice] DeleteWorkspace started
+DeleteWorkspace-[Notice] DeleteWorkspace successful, Duration 0.00 seconds
+DeleteWorkspace-[Notice] DeleteWorkspace started
+DeleteWorkspace-[Notice] DeleteWorkspace successful, Duration 0.00 seconds
+run 1132 axis0 60: indexed 7/17, log10 p -4.9 (fresh search)
+run 1134 axis0 62: indexed 12/20, log10 p -9.4
+run 1136 axis0 64: indexed 10/22, log10 p -6.7
+run 1138 axis0 66: indexed 11/23, log10 p -7.5
+run 1140 axis0 68: indexed 8/20, log10 p -5.0 (fresh search)
+run 1142 axis0 70: indexed 6/14, log10 p -4.3 (fresh search)
+run 1144 axis0 72: indexed 4/12, log10 p -2.7 (fresh search)
+run 1146 axis0 74: indexed 8/16, log10 p -6.5
+run 1148 axis0 76: indexed 4/17, log10 p -2.0 (fresh search)
+run 1150 axis0 78: indexed 8/17, log10 p -5.9 (fresh search)
+run 1152 axis0 80: indexed 1/14, log10 p -0.3 (fresh search)
+run 1154 axis0 82: indexed 5/11, log10 p -4.1 (fresh search)
+run 1156 axis0 84: indexed 8/13, log10 p -6.7
+run 1158 axis0 86: indexed 7/9, log10 p -5.7
+run 1160 axis0 88: indexed 4/13, log10 p -2.7 (fresh search)
+run 1162 axis0 90: indexed 5/5, log10 p -4.4 (fresh search)
+run 1164 axis0 92: indexed 1/7, log10 p -0.6 (fresh search)
+run 1166 axis0 94: indexed 4/4, log10 p -4.2 (fresh search)
+run 1168 axis0 96: indexed 5/5, log10 p -4.6 (fresh search)
+run 1170 axis0 98: indexed 4/7, log10 p -3.3 (fresh search)
+run 1172 axis0 100: indexed 3/5, log10 p -2.9 (fresh search)
+run 1174 axis0 102: indexed 5/6, log10 p -4.7 (fresh search)
+run 1176 axis0 104: indexed 1/5, log10 p -0.8 (fresh search)
+run 1178 axis0 106: indexed 2/2, log10 p -2.3 (fresh search)
+run 1180 axis0 108: indexed 4/4, log10 p -4.6 (fresh search)
+run 1182 axis0 110: indexed 5/5, log10 p -6.5 (fresh search)
+run 1184 axis0 112: indexed 4/6, log10 p -4.1 (fresh search)
+run 1186 axis0 114: indexed 2/7, log10 p -1.6 (fresh search)
+run 1188 axis0 116: indexed 2/4, log10 p -2.0 (fresh search)
+run 1190 axis0 118: indexed 3/3, log10 p -3.9 (fresh search)
+run 1192 axis0 120: indexed 3/5, log10 p -3.1 (fresh search)
+run 1194 axis0 122: indexed 3/4, log10 p -3.2 (fresh search)
+run 1196 axis0 124: indexed 3/3, log10 p -5.1 (fresh search)
+run 1198 axis0 126: indexed 3/5, log10 p -3.2 (fresh search)
+run 1200 axis0 128: indexed 3/3, log10 p -3.9 (fresh search)
+run 1286 axis0 214: indexed 13/28, log10 p -7.6 (fresh search)
+run 1288 axis0 216: indexed 14/25, log10 p -10.1 (fresh search)
+run 1290 axis0 218: indexed 15/31, log10 p -10.1 (fresh search)
+run 1292 axis0 220: indexed 17/29, log10 p -11.9 (fresh search)
+run 1294 axis0 222: indexed 6/32, log10 p -2.2 (fresh search)
+run 1296 axis0 224: indexed 20/34, log10 p -14.6 (fresh search)
+run 1298 axis0 226: indexed 20/34, log10 p -14.2 (fresh search)
+run 1300 axis0 228: indexed 19/29, log10 p -15.2 (fresh search)
+run 1302 axis0 230: indexed 19/27, log10 p -16.0 (fresh search)
+run 1304 axis0 232: indexed 18/28, log10 p -15.5 (fresh search)
+run 1306 axis0 234: indexed 22/31, log10 p -17.7 (fresh search)
+run 1308 axis0 236: indexed 28/35, log10 p -21.6 (fresh search)
+run 1310 axis0 238: indexed 22/31, log10 p -16.4 (fresh search)
+run 1312 axis0 240: indexed 28/33, log10 p -22.6 (fresh search)
+run 1314 axis0 242: indexed 21/33, log10 p -15.8 (fresh search)
+run 1316 axis0 244: indexed 19/30, log10 p -13.7 (fresh search)
+run 1318 axis0 246: indexed 19/30, log10 p -13.1 (fresh search)
+run 1320 axis0 248: indexed 15/27, log10 p -10.8 (fresh search)
+run 1322 axis0 250: indexed 19/26, log10 p -15.1 (fresh search)
+run 1324 axis0 252: indexed 24/35, log10 p -18.9 (fresh search)
+run 1326 axis0 254: indexed 20/32, log10 p -14.4 (fresh search)
+run 1328 axis0 256: indexed 19/28, log10 p -15.4 (fresh search)
+run 1330 axis0 258: indexed 14/26, log10 p -10.3 (fresh search)
+run 1332 axis0 260: indexed 15/26, log10 p -12.2 (fresh search)
+run 1334 axis0 262: indexed 18/30, log10 p -13.5 (fresh search)
+run 1336 axis0 264: indexed 16/31, log10 p -10.8 (fresh search)
+run 1338 axis0 266: indexed 17/26, log10 p -13.2 (fresh search)
+run 1340 axis0 268: indexed 20/30, log10 p -15.9 (fresh search)
+run 1342 axis0 270: indexed 20/26, log10 p -17.1 (fresh search)
+run 1344 axis0 272: indexed 15/23, log10 p -11.9 (fresh search)
+run 1346 axis0 274: indexed 14/24, log10 p -9.8 (fresh search)
+run 1348 axis0 276: indexed 20/32, log10 p -14.8 (fresh search)
+run 1350 axis0 278: indexed 21/33, log10 p -15.8 (fresh search)
+run 1352 axis0 280: indexed 16/28, log10 p -11.6 (fresh search)
+run 1354 axis0 282: indexed 21/31, log10 p -16.2 (fresh search)
+run 1356 axis0 284: indexed 21/33, log10 p -16.0 (fresh search)
+run 1358 axis0 286: indexed 21/35, log10 p -15.4 (fresh search)
+run 1360 axis0 288: indexed 23/38, log10 p -16.5 (fresh search)
+run 1362 axis0 290: indexed 14/24, log10 p -10.8 (fresh search)
+run 1364 axis0 292: indexed 18/31, log10 p -12.3 (fresh search)
+run 1366 axis0 294: indexed 22/31, log10 p -16.2 (fresh search)
+run 1368 axis0 296: indexed 22/30, log10 p -17.0 (fresh search)
+run 1370 axis0 298: indexed 21/32, log10 p -15.4 (fresh search)
+run 1372 axis0 300: indexed 17/24, log10 p -13.2 (fresh search)
+{"stage": "A goniometer", "train": {"indexed": 72, "of": 834, "fraction": 0.08633093525179857, "median_deg": 0.277900584318037}, "test": {"indexed": 54, "of": 811, "fraction": 0.06658446362515413, "median_deg": 0.3541383033376021}, "goniometer_axis": [0.71152, 0.01663, -0.70247], "dtheta_rms_deg": 0.2940942728579058}
+{"stage": "R +cell ratios b/a, c/a", "train": {"indexed": 75, "of": 834, "fraction": 0.08992805755395683, "median_deg": 0.24833238617871103}, "test": {"indexed": 51, "of": 811, "fraction": 0.06288532675709001, "median_deg": 0.3510328518914678}, "goniometer_axis": [0.71118, 0.01546, -0.70284], "dtheta_rms_deg": 0.37707036782812076, "b_over_a": "3.07227 +- 0.00571", "c_over_a": "0.35301 +- 0.00069"}
+nominal {"stage": "R +cell ratios b/a, c/a", "train": {"indexed": 75, "of": 834, "fraction": 0.08992805755395683, "median_deg": 0.24833238617871103}, "test": {"indexed": 51, "of": 811, "fraction": 0.06288532675709001, "median_deg": 0.3510328518914678}, "goniometer_axis": [0.71118, 0.01546, -0.70284], "dtheta_rms_deg": 0.37707036782812076, "b_over_a": "3.07227 +- 0.00571", "c_over_a": "0.35301 +- 0.00069"}
+run 1132 axis0 60: indexed 15/17, log10 p -14.3
+run 1134 axis0 62: indexed 19/20, log10 p -18.0
+run 1136 axis0 64: indexed 20/22, log10 p -18.3
+run 1138 axis0 66: indexed 21/23, log10 p -19.0
+run 1140 axis0 68: indexed 19/20, log10 p -17.4
+run 1142 axis0 70: indexed 11/14, log10 p -10.1
+run 1144 axis0 72: indexed 11/12, log10 p -10.9
+run 1146 axis0 74: indexed 15/16, log10 p -15.5
+run 1148 axis0 76: indexed 16/17, log10 p -14.8
+run 1150 axis0 78: indexed 16/17, log10 p -15.7
+run 1152 axis0 80: indexed 13/14, log10 p -12.6
+run 1154 axis0 82: indexed 10/11, log10 p -10.4
+run 1156 axis0 84: indexed 10/13, log10 p -9.1
+run 1158 axis0 86: indexed 8/9, log10 p -6.8
+run 1160 axis0 88: indexed 7/13, log10 p -6.0
+run 1162 axis0 90: indexed 5/5, log10 p -4.4 (fresh search)
+run 1164 axis0 92: indexed 6/7, log10 p -6.0
+run 1166 axis0 94: indexed 4/4, log10 p -4.2 (fresh search)
+run 1168 axis0 96: indexed 5/5, log10 p -4.6 (fresh search)
+run 1170 axis0 98: indexed 7/7, log10 p -6.9
+run 1172 axis0 100: indexed 5/5, log10 p -5.5
+run 1174 axis0 102: indexed 3/6, log10 p -2.4 (fresh search)
+run 1176 axis0 104: indexed 5/5, log10 p -6.1
+run 1178 axis0 106: indexed 2/2, log10 p -2.3 (fresh search)
+run 1180 axis0 108: indexed 4/4, log10 p -4.6 (fresh search)
+run 1182 axis0 110: indexed 5/5, log10 p -6.6
+run 1184 axis0 112: indexed 5/6, log10 p -5.4
+run 1186 axis0 114: indexed 6/7, log10 p -6.7
+run 1188 axis0 116: indexed 4/4, log10 p -4.7 (fresh search)
+run 1190 axis0 118: indexed 3/3, log10 p -3.9 (fresh search)
+run 1192 axis0 120: indexed 5/5, log10 p -5.8
+run 1194 axis0 122: indexed 4/4, log10 p -4.6 (fresh search)
+run 1196 axis0 124: indexed 3/3, log10 p -5.2
+run 1198 axis0 126: indexed 5/5, log10 p -6.0
+run 1200 axis0 128: indexed 1/3, log10 p -1.0 (fresh search)
+run 1286 axis0 214: indexed 23/28, log10 p -18.0
+run 1288 axis0 216: indexed 21/25, log10 p -18.2
+run 1290 axis0 218: indexed 25/31, log10 p -21.5
+run 1292 axis0 220: indexed 24/29, log10 p -19.8
+run 1294 axis0 222: indexed 25/32, log10 p -20.7
+run 1296 axis0 224: indexed 27/34, log10 p -22.7
+run 1298 axis0 226: indexed 29/34, log10 p -24.6
+run 1300 axis0 228: indexed 24/29, log10 p -21.3
+run 1302 axis0 230: indexed 25/27, log10 p -23.7
+run 1304 axis0 232: indexed 20/28, log10 p -18.0
+run 1306 axis0 234: indexed 27/31, log10 p -23.8
+run 1308 axis0 236: indexed 34/35, log10 p -28.7
+run 1310 axis0 238: indexed 30/31, log10 p -25.8
+run 1312 axis0 240: indexed 33/33, log10 p -28.7
+run 1314 axis0 242: indexed 30/33, log10 p -26.6
+run 1316 axis0 244: indexed 28/30, log10 p -24.2
+run 1318 axis0 246: indexed 28/30, log10 p -23.3
+run 1320 axis0 248: indexed 25/27, log10 p -22.6
+run 1322 axis0 250: indexed 24/26, log10 p -21.2
+run 1324 axis0 252: indexed 30/35, log10 p -26.1
+run 1326 axis0 254: indexed 29/32, log10 p -24.8
+run 1328 axis0 256: indexed 26/28, log10 p -24.2
+run 1330 axis0 258: indexed 25/26, log10 p -23.7 (fresh search)
+run 1332 axis0 260: indexed 24/26, log10 p -23.7 (fresh search)
+run 1334 axis0 262: indexed 26/30, log10 p -23.0 (fresh search)
+run 1336 axis0 264: indexed 27/31, log10 p -23.4 (fresh search)
+run 1338 axis0 266: indexed 24/26, log10 p -21.8 (fresh search)
+run 1340 axis0 268: indexed 28/30, log10 p -25.7 (fresh search)
+run 1342 axis0 270: indexed 23/26, log10 p -20.8 (fresh search)
+run 1344 axis0 272: indexed 20/23, log10 p -17.9 (fresh search)
+run 1346 axis0 274: indexed 23/24, log10 p -20.2 (fresh search)
+run 1348 axis0 276: indexed 30/32, log10 p -26.8 (fresh search)
+run 1350 axis0 278: indexed 33/33, log10 p -30.3 (fresh search)
+run 1352 axis0 280: indexed 28/28, log10 p -26.0 (fresh search)
+run 1354 axis0 282: indexed 28/31, log10 p -24.5 (fresh search)
+run 1356 axis0 284: indexed 30/33, log10 p -26.8 (fresh search)
+run 1358 axis0 286: indexed 34/35, log10 p -31.1 (fresh search)
+run 1360 axis0 288: indexed 34/38, log10 p -29.3 (fresh search)
+run 1362 axis0 290: indexed 23/24, log10 p -21.9 (fresh search)
+run 1364 axis0 292: indexed 29/31, log10 p -24.9 (fresh search)
+run 1366 axis0 294: indexed 11/31, log10 p -5.5
+run 1368 axis0 296: indexed 28/30, log10 p -24.1 (fresh search)
+run 1370 axis0 298: indexed 28/32, log10 p -23.4 (fresh search)
+run 1372 axis0 300: indexed 9/24, log10 p -5.1
+{"stage": "A goniometer", "train": {"indexed": 442, "of": 834, "fraction": 0.5299760191846523, "median_deg": 0.2312027623079388}, "test": {"indexed": 319, "of": 811, "fraction": 0.3933415536374846, "median_deg": 0.2708499710280453}, "goniometer_axis": [0.00231, -0.99999, -0.00429], "dtheta_rms_deg": 0.32538126959782787}
+{"stage": "R +cell ratios b/a, c/a", "train": {"indexed": 464, "of": 834, "fraction": 0.5563549160671463, "median_deg": 0.2283593979131725}, "test": {"indexed": 311, "of": 811, "fraction": 0.3834771886559803, "median_deg": 0.28532674429104005}, "goniometer_axis": [0.00202, -0.99999, -0.00419], "dtheta_rms_deg": 0.36991928260377227, "b_over_a": "3.07725 +- 0.00153", "c_over_a": "0.35493 +- 0.00021"}
+detcal {"stage": "R +cell ratios b/a, c/a", "train": {"indexed": 464, "of": 834, "fraction": 0.5563549160671463, "median_deg": 0.2283593979131725}, "test": {"indexed": 311, "of": 811, "fraction": 0.3834771886559803, "median_deg": 0.28532674429104005}, "goniometer_axis": [0.00202, -0.99999, -0.00419], "dtheta_rms_deg": 0.36991928260377227, "b_over_a": "3.07725 +- 0.00153", "c_over_a": "0.35493 +- 0.00021"}
+nominal  held-out indexed 51/811 (6%) median 0.351 deg; b/a 3.07227 +- 0.00571, c/a 0.35301 +- 0.00069
+detcal   held-out indexed 311/811 (38%) median 0.285 deg; b/a 3.07725 +- 0.00153, c/a 0.35493 +- 0.00021

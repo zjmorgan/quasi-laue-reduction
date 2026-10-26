@@ -1,0 +1,155 @@
+FrameworkManager-[Notice] Welcome to Mantid 6.16.20260915.1730
+FrameworkManager-[Notice] Please cite: https://doi.org/10.1016/j.nima.2014.07.029 and this release: https://doi.org/10.5286/Software/Mantid
+DownloadInstrument-[Notice] All instrument definitions up to date
+CreateWorkspace-[Notice] CreateWorkspace started
+CreateWorkspace-[Notice] CreateWorkspace successful, Duration 2.43 seconds
+LoadInstrument-[Notice] LoadInstrument started
+LoadInstrument-[Notice] LoadInstrument successful, Duration 2.88 seconds
+PreprocessDetectorsToMD-[Notice] PreprocessDetectorsToMD started
+PreprocessDetectorsToMD-[Notice] PreprocessDetectorsToMD successful, Duration 1.63 seconds
+DeleteWorkspace-[Notice] DeleteWorkspace started
+DeleteWorkspace-[Notice] DeleteWorkspace successful, Duration 0.00 seconds
+DeleteWorkspace-[Notice] DeleteWorkspace started
+DeleteWorkspace-[Notice] DeleteWorkspace successful, Duration 0.00 seconds
+2022 'garnet axis0 = 70 degrees' peaks=44 95s
+2024 'Garnet axis0 = 73 degrees' peaks=42 92s
+2026 'Garnet axis0 = 76 degrees' peaks=45 92s
+2028 'Garnet axis0 = 79 degrees' peaks=43 89s
+2030 'Garnet axis0 = 82 degrees' peaks=30 91s
+2032 'Garnet axis0 = 85 degrees' peaks=33 94s
+2034 'Garnet axis0 = 88 degrees' peaks=42 92s
+2036 'Garnet axis0 = 91 degrees' peaks=38 91s
+2038 'Garnet axis0 = 94 degrees' peaks=47 91s
+2040 'Garnet axis0 = 97 degrees' peaks=45 96s
+2042 'Garnet axis0 = 100 degrees' peaks=40 96s
+2044 'Garnet axis0 = 102 degrees' peaks=40 95s
+2046 'Garnet axis0 = 105 degrees' peaks=40 104s
+2048 'Garnet axis0 = 108 degrees' peaks=43 100s
+2050 'Garnet axis0 = 111 degrees' peaks=43 92s
+2052 'Garnet axis0 = 114 degrees' peaks=37 91s
+2054 'Garnet axis0 = 117 degrees' peaks=49 93s
+2056 'Garnet axis0 = 120 degrees' peaks=44 91s
+2058 'Garnet axis0 = 123 degrees' peaks=33 90s
+2060 'Garnet axis0 = 126 degrees' peaks=41 89s
+2062 'Garnet axis0 = 129 degrees' peaks=37 91s
+2064 'Garnet axis0 = 132 degrees' peaks=31 89s
+2066 'Garnet axis0 = 135 degrees' peaks=43 86s
+2068 'Garnet axis0 = 138 degrees' peaks=30 89s
+2070 'Garnet axis0 = 141 degrees' peaks=38 81s
+2072 'Garnet axis0 = 144 degrees' peaks=36 80s
+2074 'Garnet axis0 = 147 degrees' peaks=39 82s
+2076 'Garnet axis0 = 150 degrees' peaks=44 82s
+2078 'Garnet axis0 = 153 degrees' peaks=41 86s
+2080 'Garnet axis0 = 156 degrees' peaks=42 82s
+2082 'Garnet axis0 = 159 degrees' peaks=46 84s
+2084 'Garnet axis0 = 162 degrees' peaks=34 80s
+2086 'Garnet axis0 = 165 degrees' peaks=33 84s
+2088 'Garnet axis0 = 168 degrees' peaks=43 84s
+2090 'Garnet axis0 = 171 degrees' peaks=38 82s
+2092 'Garnet axis0 = 174 degrees' peaks=44 83s
+2094 'Garnet axis0 = 177 degrees' peaks=43 81s
+2096 'Garnet axis0 = 180 degrees' peaks=32 83s
+2098 'Garnet axis0 = 183 degrees' peaks=41 84s
+2100 'Garnet axis0 = 186 degrees' peaks=48 82s
+2102 'Garnet axis0 = 189 degrees' peaks=41 82s
+2104 'garnet axis0 = 192 degrees' peaks=43 81s
+2106 'Garnet axis0 = 195 degrees' peaks=43 80s
+2108 'Garnet axis0 = 198 degrees' peaks=51 81s
+2110 'Garnet axis0 = 201 degrees' peaks=37 79s
+2112 'Garnet axis0 = 204 degrees' peaks=39 79s
+2114 'Garnet axis0 = 207 degrees' peaks=42 87s
+2116 'Garnet axis0 = 210 degrees' peaks=41 78s
+2118 'Garnet axis0 = 213 degrees' peaks=38 80s
+2120 'Garnet axis0 = 216 degrees' peaks=35 78s
+2122 'Garnet axis0 = 219 degrees' peaks=33 80s
+2124 'Garnet axis0 = 222 degrees' peaks=37 81s
+2126 'garnet axis0 = 225 degrees' peaks=31 80s
+2128 'Garnet axis0 = 228 degrees' peaks=37 81s
+2130 'Garnet axis0 = 231 degrees' peaks=40 81s
+2132 'Garnet axis0 = 234 degrees' peaks=38 81s
+2134 'Garnet axis0 = 237 degrees' peaks=37 81s
+2136 'Garnet axis0 = 240 degrees' peaks=44 85s
+2138 'Garnet axis0 = 243 degrees' peaks=40 88s
+2140 'Garnet axis0 = 246 degrees' peaks=42 89s
+2142 'Garnet axis0 = 249 degrees' peaks=42 86s
+2144 'Garnet axis0 = 252 degrees' peaks=51 86s
+2146 'Garnet axis0 = 255 degrees' peaks=41 84s
+2148 'garnet axis0 = 258 degrees' peaks=45 87s
+2150 'Garnet axis0 = 261 degrees' peaks=45 86s
+2152 'Garnet axis0 = 264 degrees' peaks=31 85s
+2154 'Garnet axis0 = 267 degrees' peaks=39 86s
+2156 'Garnet axis0 = 270 degrees' peaks=37 80s
+run 2022 axis0 70: indexed 23/44, log10 p -26.8
+run 2024 axis0 73: indexed 20/42, log10 p -23.0
+run 2026 axis0 76: indexed 21/45, log10 p -24.3
+run 2028 axis0 79: indexed 29/43, log10 p -37.2
+run 2030 axis0 82: indexed 19/30, log10 p -23.5
+run 2032 axis0 85: indexed 21/33, log10 p -26.2
+run 2034 axis0 88: indexed 24/42, log10 p -30.0
+run 2036 axis0 91: indexed 17/38, log10 p -19.5
+run 2038 axis0 94: indexed 26/47, log10 p -32.7
+run 2040 axis0 97: indexed 19/45, log10 p -21.4
+run 2042 axis0 100: indexed 20/40, log10 p -23.8
+run 2044 axis0 102: indexed 20/40, log10 p -23.4
+run 2046 axis0 105: indexed 22/40, log10 p -27.3
+run 2048 axis0 108: indexed 29/43, log10 p -37.0
+run 2050 axis0 111: indexed 26/43, log10 p -31.9
+run 2052 axis0 114: indexed 14/37, log10 p -15.7
+run 2054 axis0 117: indexed 26/49, log10 p -30.9
+run 2056 axis0 120: indexed 23/44, log10 p -27.6
+run 2058 axis0 123: indexed 19/33, log10 p -22.7
+run 2060 axis0 126: indexed 21/41, log10 p -24.6
+run 2062 axis0 129: indexed 17/37, log10 p -20.1
+run 2064 axis0 132: indexed 15/31, log10 p -17.8
+run 2066 axis0 135: indexed 23/43, log10 p -28.5
+run 2068 axis0 138: indexed 18/30, log10 p -23.1
+run 2070 axis0 141: indexed 21/38, log10 p -26.3
+run 2072 axis0 144: indexed 18/36, log10 p -21.9
+run 2074 axis0 147: indexed 17/39, log10 p -19.1
+run 2076 axis0 150: indexed 25/44, log10 p -31.6
+run 2078 axis0 153: indexed 21/41, log10 p -25.6
+run 2080 axis0 156: indexed 21/42, log10 p -25.3
+run 2082 axis0 159: indexed 20/46, log10 p -23.1
+run 2084 axis0 162: indexed 17/34, log10 p -20.7
+run 2086 axis0 165: indexed 15/33, log10 p -17.9
+run 2088 axis0 168: indexed 23/43, log10 p -28.5
+run 2090 axis0 171: indexed 19/38, log10 p -23.9
+run 2092 axis0 174: indexed 21/44, log10 p -25.2
+run 2094 axis0 177: indexed 20/43, log10 p -23.0
+run 2096 axis0 180: indexed 15/32, log10 p -18.4
+run 2098 axis0 183: indexed 19/41, log10 p -21.8
+run 2100 axis0 186: indexed 18/48, log10 p -19.1
+run 2102 axis0 189: indexed 27/41, log10 p -35.0
+run 2104 axis0 192: indexed 25/43, log10 p -30.6
+run 2106 axis0 195: indexed 23/43, log10 p -27.2
+run 2108 axis0 198: indexed 31/51, log10 p -38.6
+run 2110 axis0 201: indexed 20/37, log10 p -24.4
+run 2112 axis0 204: indexed 21/39, log10 p -25.6
+run 2114 axis0 207: indexed 20/42, log10 p -23.5
+run 2116 axis0 210: indexed 24/41, log10 p -29.5
+run 2118 axis0 213: indexed 25/38, log10 p -31.9
+run 2120 axis0 216: indexed 18/35, log10 p -22.1
+run 2122 axis0 219: indexed 16/33, log10 p -19.4
+run 2124 axis0 222: indexed 28/37, log10 p -36.4
+run 2126 axis0 225: indexed 22/31, log10 p -28.2
+run 2128 axis0 228: indexed 22/37, log10 p -27.7 (fresh search)
+run 2130 axis0 231: indexed 22/40, log10 p -27.0
+run 2132 axis0 234: indexed 20/38, log10 p -24.0 (fresh search)
+run 2134 axis0 237: indexed 20/37, log10 p -24.4
+run 2136 axis0 240: indexed 19/44, log10 p -22.4
+run 2138 axis0 243: indexed 19/40, log10 p -22.5
+run 2140 axis0 246: indexed 16/42, log10 p -18.1
+run 2142 axis0 249: indexed 20/42, log10 p -23.6 (fresh search)
+run 2144 axis0 252: indexed 29/51, log10 p -35.5
+run 2146 axis0 255: indexed 18/41, log10 p -20.1
+run 2148 axis0 258: indexed 16/45, log10 p -17.0
+run 2150 axis0 261: indexed 32/45, log10 p -41.1 (fresh search)
+run 2152 axis0 264: indexed 19/31, log10 p -23.8
+run 2154 axis0 267: indexed 18/39, log10 p -20.6
+run 2156 axis0 270: indexed 24/37, log10 p -30.8
+{"stage": "A goniometer", "train": {"indexed": 441, "of": 1361, "fraction": 0.32402645113886847, "median_deg": 0.21371511501166246}, "test": {"indexed": 343, "of": 1361, "fraction": 0.2520205731080088, "median_deg": 0.2233813994597887}, "goniometer_axis": [-0.00113, -1.0, 0.00291], "dtheta_rms_deg": 0.1842649529435592}
+{"stage": "B +relative array yaw", "train": {"indexed": 770, "of": 1361, "fraction": 0.5657604702424688, "median_deg": 0.20001758390175267}, "test": {"indexed": 451, "of": 1361, "fraction": 0.331373989713446, "median_deg": 0.230256037066993}, "goniometer_axis": [0.00757, -0.99997, -0.00091], "dtheta_rms_deg": 0.2717150699422434, "relative_yaw_deg": ["-1.0179 +- 0.0675"]}
+{"stage": "C +array vertical shifts", "train": {"indexed": 1018, "of": 1361, "fraction": 0.7479794268919912, "median_deg": 0.20061875068298007}, "test": {"indexed": 577, "of": 1361, "fraction": 0.4239529757531227, "median_deg": 0.23842333871511873}, "goniometer_axis": [0.00384, -0.99998, -0.00402], "dtheta_rms_deg": 0.2703102786309159, "relative_yaw_deg": ["-0.7783 +- 0.0212"], "array_vertical_mm": ["2.9054 +- 0.2529", "5.2858 +- 0.1919"]}
+{"stage": "D +array horizontal translations", "train": {"indexed": 1219, "of": 1361, "fraction": 0.8956649522409993, "median_deg": 0.18580419634898876}, "test": {"indexed": 797, "of": 1361, "fraction": 0.585598824393828, "median_deg": 0.21435217026478998}, "goniometer_axis": [-0.003, -0.99997, -0.00704], "dtheta_rms_deg": 0.27786718681479317, "relative_yaw_deg": ["-1.1875 +- 0.0713"], "array_vertical_mm": ["6.2681 +- 0.1985", "5.1889 +- 0.1380"], "array_horizontal_xz_mm": ["-1.5232 +- 0.2547", "-3.7864 +- 0.2708", "3.9939 +- 0.3314", "2.1013 +- 0.5098"]}
+{"stage": "E +panel in-plane shifts", "train": {"indexed": 1294, "of": 1361, "fraction": 0.9507714915503307, "median_deg": 0.036202905018044504}, "test": {"indexed": 816, "of": 1361, "fraction": 0.5995591476855253, "median_deg": 0.18143469799454204}, "goniometer_axis": [-0.00074, -0.99998, -0.00562], "dtheta_rms_deg": 0.27446069860163574, "relative_yaw_deg": ["-3.6798 +- 0.0778"], "array_vertical_mm": ["5.3524 +- 0.2433", "6.2246 +- 0.1227"], "array_horizontal_xz_mm": ["-20.1882 +- 0.3421", "-11.4560 +- 0.3325", "18.7761 +- 0.4427", "-5.0839 +- 0.4751"], "panel_inplane_mm_rms": 7.65343020510679}
+selected E +panel in-plane shifts

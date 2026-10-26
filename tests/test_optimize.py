@@ -252,6 +252,20 @@ def test_restarts_keep_best():
     assert np.allclose(opt.x, best["x"])
 
 
+def test_acceptance_flag():
+    cell = (8.0, 11.0, 14.0, 90, 90, 90)
+    kf, h, _ = simulate_laue(cell, [0.3, 0.6, 0.4], WL, d_min=1.5, n_peaks=40, rng=0)
+    opt = CalculateUB(*cell)
+    opt.find_orientation(kf, WL, heights=h, n_proc=1, seed=0, n_restarts=1, popsize=5, maxiter=5)
+    sig = opt.significance
+    assert sig["acceptance_log10_p"] == opt.restarts[0]["log10_p_value"]
+    assert sig["accepted"] == (sig["acceptance_log10_p"] < -5.0)
+    # an unreachable threshold leaves the best orientation in place but rejects it
+    opt.find_orientation(kf, WL, heights=h, n_proc=1, seed=0, n_restarts=1, accept_log10_p=-1e6, popsize=5, maxiter=5)
+    assert not opt.significance["accepted"]
+    assert opt.x is not None
+
+
 def test_find_orientation_leaves_final_tolerance():
     cell = (8.0, 11.0, 14.0, 90, 90, 90)
     kf, h, _ = simulate_laue(cell, [0.3, 0.6, 0.4], WL, d_min=1.5, n_peaks=20, rng=0)

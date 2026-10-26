@@ -1,0 +1,6 @@
+{"popsize": 60, "maxiter": 300, "seed": 1, "indexed": 18, "n_peaks": 99, "seconds": 5.30801464500837, "misorientation_deg": 1.5991211361892896, "time": "2026-09-30 11:45:14"}
+{"popsize": 60, "maxiter": 300, "seed": 2, "indexed": 24, "n_peaks": 99, "seconds": 5.009708492987556, "misorientation_deg": 1.3784828342294349, "time": "2026-09-30 11:45:19"}
+{"popsize": 60, "maxiter": 300, "seed": 3, "indexed": 25, "n_peaks": 99, "seconds": 5.087681150995195, "misorientation_deg": 20.435000450789257, "time": "2026-09-30 11:45:24"}
+{"popsize": 300, "maxiter": 1000, "seed": 1, "indexed": 90, "n_peaks": 99, "seconds": 45.47845297801541, "misorientation_deg": 0.014105059022268008, "time": "2026-09-30 11:46:09"}
+{"popsize": 300, "maxiter": 1000, "seed": 2, "indexed": 90, "n_peaks": 99, "seconds": 45.672398810012965, "misorientation_deg": 0.014102213622626078, "time": "2026-09-30 11:46:55"}
+{"popsize": 300, "maxiter": 1000, "seed": 3, "indexed": 90, "n_peaks": 99, "seconds": 45.66576101098326, "misorientation_deg": 0.014101110225874241, "time": "2026-09-30 11:47:41"}

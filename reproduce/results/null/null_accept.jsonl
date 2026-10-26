@@ -1,0 +1,30 @@
+{"case": "T4 lysozyme", "scramble": 0, "seconds": 188.6, "restart_scores": [-0.9, -3.15, -1.23], "best": -3.15, "accepted": false, "log10p_0.35_final": -3.15}
+{"case": "T4 lysozyme", "scramble": 1, "seconds": 197.1, "restart_scores": [-1.23, -2.07, -1.16], "best": -2.07, "accepted": false, "log10p_0.35_final": -2.07}
+{"case": "T4 lysozyme", "scramble": 2, "seconds": 185.3, "restart_scores": [-2.17, -0.9, -1.54], "best": -2.17, "accepted": false, "log10p_0.35_final": -2.17}
+{"case": "T4 lysozyme", "scramble": 3, "seconds": 184.2, "restart_scores": [-1.54, -1.71, -0.96], "best": -1.71, "accepted": false, "log10p_0.35_final": -1.71}
+{"case": "T4 lysozyme", "scramble": 4, "seconds": 184.3, "restart_scores": [-1.46, -1.88, -0.45], "best": -1.88, "accepted": false, "log10p_0.35_final": -1.88}
+{"case": "T4 lysozyme", "scramble": 5, "seconds": 182.3, "restart_scores": [-1.88, -0.79, -0.9], "best": -1.88, "accepted": false, "log10p_0.35_final": -1.88}
+{"case": "T4 lysozyme", "scramble": 6, "seconds": 182.1, "restart_scores": [-0.42, -0.48, -1.62], "best": -1.62, "accepted": false, "log10p_0.35_final": -1.62}
+{"case": "T4 lysozyme", "scramble": 7, "seconds": 190.8, "restart_scores": [-0.84, -1.23, -0.56], "best": -1.23, "accepted": false, "log10p_0.35_final": -1.23}
+{"case": "T4 lysozyme", "scramble": 8, "seconds": 182.6, "restart_scores": [-0.75, -0.84, -0.75], "best": -0.84, "accepted": false, "log10p_0.35_final": -0.84}
+{"case": "T4 lysozyme", "scramble": 9, "seconds": 184.0, "restart_scores": [-2.48, -0.72, -1.23], "best": -2.48, "accepted": false, "log10p_0.35_final": -2.48}
+{"case": "T4 lysozyme", "scramble": 10, "seconds": 181.4, "restart_scores": [-1.71, -1.3, -1.23], "best": -1.71, "accepted": false, "log10p_0.35_final": -1.71}
+{"case": "T4 lysozyme", "scramble": 11, "seconds": 185.6, "restart_scores": [-2.27, -0.86, -1.88], "best": -2.27, "accepted": false, "log10p_0.35_final": -2.27}
+{"case": "T4 lysozyme", "scramble": 12, "seconds": 188.0, "restart_scores": [-1.71, -0.63, -1.38], "best": -1.71, "accepted": false, "log10p_0.35_final": -1.71}
+{"case": "T4 lysozyme", "scramble": 13, "seconds": 180.5, "restart_scores": [-0.68, -1.23, -1.23], "best": -1.23, "accepted": false, "log10p_0.35_final": -1.23}
+{"case": "T4 lysozyme", "scramble": 14, "seconds": 185.7, "restart_scores": [-0.65, -1.38, -0.86], "best": -1.38, "accepted": false, "log10p_0.35_final": -1.38}
+{"case": "T4 lysozyme", "scramble": 15, "seconds": 179.2, "restart_scores": [-1.62, -0.96, -0.72], "best": -1.62, "accepted": false, "log10p_0.35_final": -1.62}
+{"case": "T4 lysozyme", "scramble": 16, "seconds": 183.2, "restart_scores": [-1.79, -0.68, -0.53], "best": -1.79, "accepted": false, "log10p_0.35_final": -1.79}
+{"case": "T4 lysozyme", "scramble": 17, "seconds": 183.8, "restart_scores": [-1.79, -0.62, -1.71], "best": -1.79, "accepted": false, "log10p_0.35_final": -1.79}
+{"case": "T4 lysozyme", "scramble": 18, "seconds": 183.9, "restart_scores": [-0.96, -0.45, -0.9], "best": -0.96, "accepted": false, "log10p_0.35_final": -0.96}
+{"case": "T4 lysozyme", "scramble": 19, "seconds": 181.9, "restart_scores": [-0.84, -0.84, -2.07], "best": -2.07, "accepted": false, "log10p_0.35_final": -2.07}
+{"case": "mesolite", "scramble": 0, "seconds": 121.9, "restart_scores": [-1.0, -2.08, -0.78], "best": -2.08, "accepted": false, "log10p_0.35_final": -2.08}
+{"case": "mesolite", "scramble": 1, "seconds": 121.4, "restart_scores": [-0.59, -3.4, -0.59], "best": -3.4, "accepted": false, "log10p_0.35_final": -3.4}
+{"case": "mesolite", "scramble": 2, "seconds": 122.6, "restart_scores": [-1.71, -2.93, -1.38], "best": -2.93, "accepted": false, "log10p_0.35_final": -2.93}
+{"case": "mesolite", "scramble": 3, "seconds": 124.2, "restart_scores": [-2.35, -2.35, -1.71], "best": -2.35, "accepted": false, "log10p_0.35_final": -2.08}
+{"case": "mesolite", "scramble": 4, "seconds": 124.6, "restart_scores": [-1.71, -1.12, -2.08], "best": -2.08, "accepted": false, "log10p_0.35_final": -2.08}
+{"case": "mesolite", "scramble": 5, "seconds": 124.1, "restart_scores": [-1.71, -1.83, -1.83], "best": -1.83, "accepted": false, "log10p_0.35_final": -0.78}
+{"case": "mesolite", "scramble": 6, "seconds": 123.1, "restart_scores": [-1.38, -1.71, -1.24], "best": -1.71, "accepted": false, "log10p_0.35_final": -1.71}
+{"case": "mesolite", "scramble": 7, "seconds": 122.1, "restart_scores": [-2.35, -2.35, -1.99], "best": -2.35, "accepted": false, "log10p_0.35_final": -2.08}
+{"case": "mesolite", "scramble": 8, "seconds": 123.9, "restart_scores": [-1.99, -3.13, -1.0], "best": -3.13, "accepted": false, "log10p_0.35_final": -1.05}
+{"case": "mesolite", "scramble": 9, "seconds": 123.9, "restart_scores": [-0.55, -1.52, -1.12], "best": -1.52, "accepted": false, "log10p_0.35_final": -0.55}

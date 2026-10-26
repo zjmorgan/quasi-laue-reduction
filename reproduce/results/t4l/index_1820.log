@@ -1,0 +1,5 @@
+{"seed": 1, "restart_scores": [-15.6], "accepted": true, "refined": {"indexed": 263, "chance": 143.5, "log10p": -18.6}, "time_s": 80, "deg_from_series": 0.18}
+{"seed": 2, "restart_scores": [-0.8, -16.4], "accepted": true, "refined": {"indexed": 264, "chance": 143.8, "log10p": -18.7}, "time_s": 131, "deg_from_series": 0.26}
+{"seed": 3, "restart_scores": [-16.4], "accepted": true, "refined": {"indexed": 264, "chance": 143.8, "log10p": -18.7}, "time_s": 79, "deg_from_series": 0.26}
+{"seed": 4, "restart_scores": [-14.7], "accepted": true, "refined": {"indexed": 263, "chance": 143.5, "log10p": -18.6}, "time_s": 80, "deg_from_series": 0.16}
+{"seed": 5, "restart_scores": [-15.4], "accepted": true, "refined": {"indexed": 263, "chance": 143.5, "log10p": -18.6}, "time_s": 83, "deg_from_series": 0.18}

@@ -1,0 +1,53 @@
+=== 1816 detcal=default Fri Oct  2 05:26:03 EDT 2026
+Found 282 peaks
+Indexed 196 of 282 peaks (random orientations: 136.6 expected; log10 p = -6.0; 2 restart(s))
+{
+ "indexed": 196,
+ "peaks": 282,
+ "significance": {
+  "indexed": 196,
+  "expected_chance": 136.56140415756033,
+  "log10_p_value": -5.986469316450853
+ },
+ "detcal": "/home/zachary/git/quasi-laue-reduction/src/quasi_laue_reduction/calibration/IMAGINE_garnet_IPTS-37331_2026-10-01_lite.DetCal",
+ "cell": [
+  61.5,
+  61.5,
+  95.9,
+  90.0,
+  90.0,
+  120.0
+ ],
+ "timing_s": {
+  "load": 1257.971995285,
+  "find_peaks": 3.818456456999911,
+  "find_UB": 138.9682962740003
+ }
+}
+=== 1816 detcal=none Fri Oct  2 05:49:34 EDT 2026
+Found 282 peaks
+Indexed 168 of 282 peaks (random orientations: 140.1 expected; log10 p = -1.9; 6 restart(s))
+{
+ "indexed": 168,
+ "peaks": 282,
+ "significance": {
+  "indexed": 168,
+  "expected_chance": 140.1121910784587,
+  "log10_p_value": -1.921352376227565
+ },
+ "detcal": null,
+ "cell": [
+  61.5,
+  61.5,
+  95.9,
+  90.0,
+  90.0,
+  120.0
+ ],
+ "timing_s": {
+  "load": 1872.2409483440001,
+  "find_peaks": 3.82637093700032,
+  "find_UB": 407.38156466600003
+ }
+}
+T4L_DONE

@@ -1,0 +1,30 @@
+{"case": "T4 lysozyme", "scramble": 0, "seconds": 115.4, "n_search": 351, "log10p_0.2": -1.48, "log10p_0.35": -1.02, "indexed_0.2": 67, "indexed_0.35": 148, "chance_0.2": 52.8, "chance_0.35": 132.3}
+{"case": "T4 lysozyme", "scramble": 1, "seconds": 112.6, "n_search": 351, "log10p_0.2": -0.4, "log10p_0.35": -1.09, "indexed_0.2": 55, "indexed_0.35": 149, "chance_0.2": 52.8, "chance_0.35": 132.3}
+{"case": "T4 lysozyme", "scramble": 2, "seconds": 117.5, "n_search": 351, "log10p_0.2": -0.04, "log10p_0.35": -0.45, "indexed_0.2": 44, "indexed_0.35": 137, "chance_0.2": 52.8, "chance_0.35": 132.3}
+{"case": "T4 lysozyme", "scramble": 3, "seconds": 114.8, "n_search": 351, "log10p_0.2": -0.4, "log10p_0.35": -0.84, "indexed_0.2": 55, "indexed_0.35": 145, "chance_0.2": 52.8, "chance_0.35": 132.3}
+{"case": "T4 lysozyme", "scramble": 4, "seconds": 116.6, "n_search": 351, "log10p_0.2": -0.4, "log10p_0.35": -0.49, "indexed_0.2": 55, "indexed_0.35": 138, "chance_0.2": 52.8, "chance_0.35": 132.3}
+{"case": "T4 lysozyme", "scramble": 5, "seconds": 116.7, "n_search": 351, "log10p_0.2": -0.4, "log10p_0.35": -0.68, "indexed_0.2": 55, "indexed_0.35": 142, "chance_0.2": 52.8, "chance_0.35": 132.3}
+{"case": "T4 lysozyme", "scramble": 6, "seconds": 110.9, "n_search": 351, "log10p_0.2": -0.25, "log10p_0.35": -0.68, "indexed_0.2": 52, "indexed_0.35": 142, "chance_0.2": 52.8, "chance_0.35": 132.3}
+{"case": "T4 lysozyme", "scramble": 7, "seconds": 91.5, "n_search": 351, "log10p_0.2": -0.75, "log10p_0.35": -1.16, "indexed_0.2": 60, "indexed_0.35": 150, "chance_0.2": 52.8, "chance_0.35": 132.3}
+{"case": "T4 lysozyme", "scramble": 8, "seconds": 78.6, "n_search": 351, "log10p_0.2": -0.34, "log10p_0.35": -0.34, "indexed_0.2": 54, "indexed_0.35": 134, "chance_0.2": 52.8, "chance_0.35": 132.3}
+{"case": "T4 lysozyme", "scramble": 9, "seconds": 76.6, "n_search": 351, "log10p_0.2": -1.6, "log10p_0.35": -2.37, "indexed_0.2": 68, "indexed_0.35": 164, "chance_0.2": 52.8, "chance_0.35": 132.3}
+{"case": "T4 lysozyme", "scramble": 10, "seconds": 76.5, "n_search": 351, "log10p_0.2": -1.03, "log10p_0.35": -1.46, "indexed_0.2": 63, "indexed_0.35": 154, "chance_0.2": 52.8, "chance_0.35": 132.3}
+{"case": "T4 lysozyme", "scramble": 11, "seconds": 76.8, "n_search": 351, "log10p_0.2": -1.03, "log10p_0.35": -1.3, "indexed_0.2": 63, "indexed_0.35": 152, "chance_0.2": 52.8, "chance_0.35": 132.3}
+{"case": "T4 lysozyme", "scramble": 12, "seconds": 76.6, "n_search": 351, "log10p_0.2": -0.25, "log10p_0.35": -0.54, "indexed_0.2": 52, "indexed_0.35": 139, "chance_0.2": 52.8, "chance_0.35": 132.3}
+{"case": "T4 lysozyme", "scramble": 13, "seconds": 77.5, "n_search": 351, "log10p_0.2": -0.34, "log10p_0.35": -0.41, "indexed_0.2": 54, "indexed_0.35": 136, "chance_0.2": 52.8, "chance_0.35": 132.3}
+{"case": "T4 lysozyme", "scramble": 14, "seconds": 77.6, "n_search": 351, "log10p_0.2": -0.4, "log10p_0.35": -0.54, "indexed_0.2": 55, "indexed_0.35": 139, "chance_0.2": 52.8, "chance_0.35": 132.3}
+{"case": "T4 lysozyme", "scramble": 15, "seconds": 77.9, "n_search": 351, "log10p_0.2": -0.4, "log10p_0.35": -1.09, "indexed_0.2": 55, "indexed_0.35": 149, "chance_0.2": 52.8, "chance_0.35": 132.3}
+{"case": "T4 lysozyme", "scramble": 16, "seconds": 77.1, "n_search": 351, "log10p_0.2": -1.6, "log10p_0.35": -1.46, "indexed_0.2": 68, "indexed_0.35": 154, "chance_0.2": 52.8, "chance_0.35": 132.3}
+{"case": "T4 lysozyme", "scramble": 17, "seconds": 76.2, "n_search": 351, "log10p_0.2": -1.74, "log10p_0.35": -1.62, "indexed_0.2": 69, "indexed_0.35": 156, "chance_0.2": 52.8, "chance_0.35": 132.3}
+{"case": "T4 lysozyme", "scramble": 18, "seconds": 77.8, "n_search": 351, "log10p_0.2": -0.52, "log10p_0.35": -0.63, "indexed_0.2": 57, "indexed_0.35": 141, "chance_0.2": 52.8, "chance_0.35": 132.3}
+{"case": "T4 lysozyme", "scramble": 19, "seconds": 77.4, "n_search": 351, "log10p_0.2": -0.3, "log10p_0.35": -0.45, "indexed_0.2": 53, "indexed_0.35": 137, "chance_0.2": 52.8, "chance_0.35": 132.3}
+{"case": "mesolite", "scramble": 0, "seconds": 42.4, "n_search": 173, "log10p_0.2": -0.28, "log10p_0.35": -0.36, "indexed_0.2": 2, "indexed_0.35": 6, "chance_0.2": 1.7, "chance_0.35": 5.3}
+{"case": "mesolite", "scramble": 1, "seconds": 39.9, "n_search": 173, "log10p_0.2": -2.04, "log10p_0.35": -1.05, "indexed_0.2": 6, "indexed_0.35": 9, "chance_0.2": 1.7, "chance_0.35": 5.3}
+{"case": "mesolite", "scramble": 2, "seconds": 39.9, "n_search": 173, "log10p_0.2": -2.66, "log10p_0.35": -0.78, "indexed_0.2": 7, "indexed_0.35": 8, "chance_0.2": 1.7, "chance_0.35": 5.3}
+{"case": "mesolite", "scramble": 3, "seconds": 41.1, "n_search": 173, "log10p_0.2": -1.48, "log10p_0.35": -0.55, "indexed_0.2": 5, "indexed_0.35": 7, "chance_0.2": 1.7, "chance_0.35": 5.3}
+{"case": "mesolite", "scramble": 4, "seconds": 40.7, "n_search": 173, "log10p_0.2": -2.66, "log10p_0.35": -0.78, "indexed_0.2": 7, "indexed_0.35": 8, "chance_0.2": 1.7, "chance_0.35": 5.3}
+{"case": "mesolite", "scramble": 5, "seconds": 41.8, "n_search": 173, "log10p_0.2": -1.48, "log10p_0.35": -0.78, "indexed_0.2": 5, "indexed_0.35": 8, "chance_0.2": 1.7, "chance_0.35": 5.3}
+{"case": "mesolite", "scramble": 6, "seconds": 43.7, "n_search": 173, "log10p_0.2": -1.0, "log10p_0.35": -1.71, "indexed_0.2": 4, "indexed_0.35": 11, "chance_0.2": 1.7, "chance_0.35": 5.3}
+{"case": "mesolite", "scramble": 7, "seconds": 41.0, "n_search": 173, "log10p_0.2": -0.59, "log10p_0.35": -1.05, "indexed_0.2": 3, "indexed_0.35": 9, "chance_0.2": 1.7, "chance_0.35": 5.3}
+{"case": "mesolite", "scramble": 8, "seconds": 40.6, "n_search": 173, "log10p_0.2": -0.28, "log10p_0.35": -2.93, "indexed_0.2": 2, "indexed_0.35": 14, "chance_0.2": 1.7, "chance_0.35": 5.3}
+{"case": "mesolite", "scramble": 9, "seconds": 40.8, "n_search": 173, "log10p_0.2": -1.0, "log10p_0.35": -1.36, "indexed_0.2": 4, "indexed_0.35": 10, "chance_0.2": 1.7, "chance_0.35": 5.3}

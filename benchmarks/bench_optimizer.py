@@ -4,7 +4,9 @@ orientation search. Everything except the optimizer is identical: the
 informative-peak selection, coarse subset, objective, k-d tree, persistent
 worker pool and the reassignment/Wahba refinement of find_orientation. PSO
 replaces scipy.optimize.differential_evolution with the same signature and
-evaluation budget (population popsize * 3, maxiter generations). One search
+the same evaluation budget: SciPy's Sobol initialization rounds the DE
+population popsize * 3 up to a power of two, and the swarm uses that size, so
+both evaluate (maxiter + 1) * n trial points. One search
 per run (no restarts); success means the refined orientation is within 1 deg
 of the truth (up to lattice symmetry) and log10 p < -5.
 """
@@ -38,7 +40,8 @@ def de(*args, **kwargs):
 def make_pso(w, c1, c2):
     def pso(func, bounds, maxiter=1000, popsize=15, rng=None, workers=1, x0=None, **_):
         r = np.random.default_rng(rng)
-        n, d = popsize * len(bounds), len(bounds)
+        d = len(bounds)
+        n = 1 << int(np.ceil(np.log2(popsize * d)))  # DE population after Sobol rounding
         evaluate = (lambda X: np.asarray(workers(func, X), float)) if callable(workers) else (lambda X: np.array([func(x) for x in X]))
         X = r.random((n, d))
         if x0 is not None:
@@ -48,7 +51,7 @@ def make_pso(w, c1, c2):
         P, PF = X.copy(), F.copy()
         g = int(np.argmin(PF))
         nfev = n
-        for _ in range(maxiter - 1):
+        for _ in range(maxiter):
             r1, r2 = r.random((n, d)), r.random((n, d))
             V = w * V + c1 * r1 * (P - X) + c2 * r2 * (P[g] - X)
             V = np.clip(V, -0.5, 0.5)
@@ -87,6 +90,7 @@ def main():
     a.add_argument("--seeds", type=int, nargs="+", default=[1, 2, 3, 4, 5])
     a.add_argument("--budgets", nargs="+", default=["60x100", "60x300", "300x300"])
     a.add_argument("--n-proc", type=int, default=16)
+    a.add_argument("--out", default="optimizer", help="results file name (without .jsonl)")
     args = a.parse_args()
 
     methods = {"DE": de}
@@ -109,7 +113,7 @@ def main():
                     rec = {"problem": name, "method": method, "popsize": pop, "maxiter": it, "seed": seed,
                            "nfev": COUNT.get("nfev"), "seconds": round(dt, 2), "misorientation_deg": round(float(mis), 3),
                            "log10p": round(lp, 2), "success": bool(mis < 1.0 and lp < -5)}
-                    save("optimizer", rec)
+                    save(args.out, rec)
                     print(json.dumps(rec), flush=True)
     scipy.optimize.differential_evolution = _DE
     print("DONE", flush=True)

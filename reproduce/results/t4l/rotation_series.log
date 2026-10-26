@@ -1,0 +1,8 @@
+{"run": 1816, "source": "global search", "informative": 351, "score": {"indexed": 237, "chance": 132.3, "log10p": -15.8}}
+{"sense": -1, "opposite_sense_1818": {"indexed": 167, "chance": 141.9, "log10p": -1.7}}
+{"run": 1818, "informative": 383, "predicted": {"indexed": 225, "chance": 141.9, "log10p": -10.1}, "refined": {"indexed": 251, "chance": 142.2, "log10p": -15.9}, "correction_deg": 0.32, "c_over_a": 1.5887}
+{"run": 1820, "informative": 379, "predicted": {"indexed": 218, "chance": 143.1, "log10p": -8.4}, "refined": {"indexed": 243, "chance": 143.2, "log10p": -13.7}, "correction_deg": 0.18, "c_over_a": 1.5878}
+{"run": 1822, "informative": 357, "predicted": {"indexed": 197, "chance": 131.5, "log10p": -7.2}, "refined": {"indexed": 225, "chance": 131.9, "log10p": -12.9}, "correction_deg": 0.32, "c_over_a": 1.5921}
+{"run": 1824, "informative": 347, "predicted": {"indexed": 215, "chance": 130.8, "log10p": -11.0}, "refined": {"indexed": 239, "chance": 131.7, "log10p": -16.5}, "correction_deg": 0.24, "c_over_a": 1.6006}
+{"run": 1826, "informative": 347, "predicted": {"indexed": 198, "chance": 129.2, "log10p": -7.9}, "refined": {"indexed": 224, "chance": 130.0, "log10p": -13.3}, "correction_deg": 0.32, "c_over_a": 1.599}
+{"total_rotation_deg": 49.53, "axis_from_vertical_deg": 1.14, "expected_deg": 50.0}

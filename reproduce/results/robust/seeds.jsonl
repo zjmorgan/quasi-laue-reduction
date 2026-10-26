@@ -1,0 +1,20 @@
+{"dataset": "T4 lysozyme", "seed": 1, "time_s": 74.9, "restarts": 1, "log10p": -12.8, "indexed": 225, "n_search": 351, "misorientation_deg": 0.125}
+{"dataset": "T4 lysozyme", "seed": 2, "time_s": 77.3, "restarts": 1, "log10p": -15.0, "indexed": 234, "n_search": 351, "misorientation_deg": 0.049}
+{"dataset": "T4 lysozyme", "seed": 3, "time_s": 74.4, "restarts": 1, "log10p": -14.3, "indexed": 231, "n_search": 351, "misorientation_deg": 0.052}
+{"dataset": "T4 lysozyme", "seed": 4, "time_s": 76.4, "restarts": 1, "log10p": -12.4, "indexed": 223, "n_search": 351, "misorientation_deg": 0.105}
+{"dataset": "T4 lysozyme", "seed": 5, "time_s": 74.4, "restarts": 1, "log10p": -12.4, "indexed": 223, "n_search": 351, "misorientation_deg": 0.111}
+{"dataset": "T4 lysozyme", "seed": 6, "time_s": 76.3, "restarts": 1, "log10p": -12.8, "indexed": 225, "n_search": 351, "misorientation_deg": 0.1}
+{"dataset": "T4 lysozyme", "seed": 7, "time_s": 75.4, "restarts": 1, "log10p": -13.8, "indexed": 229, "n_search": 351, "misorientation_deg": 0.133}
+{"dataset": "T4 lysozyme", "seed": 8, "time_s": 76.4, "restarts": 1, "log10p": -12.6, "indexed": 224, "n_search": 351, "misorientation_deg": 0.107}
+{"dataset": "T4 lysozyme", "seed": 9, "time_s": 74.0, "restarts": 1, "log10p": -12.6, "indexed": 224, "n_search": 351, "misorientation_deg": 0.103}
+{"dataset": "T4 lysozyme", "seed": 10, "time_s": 75.6, "restarts": 1, "log10p": -14.0, "indexed": 230, "n_search": 351, "misorientation_deg": 0.054}
+{"dataset": "mesolite", "seed": 1, "time_s": 43.6, "restarts": 1, "log10p": -166.8, "indexed": 157, "n_search": 173, "misorientation_deg": 0.0}
+{"dataset": "mesolite", "seed": 2, "time_s": 43.0, "restarts": 1, "log10p": -166.8, "indexed": 157, "n_search": 173, "misorientation_deg": 0.0}
+{"dataset": "mesolite", "seed": 3, "time_s": 41.6, "restarts": 1, "log10p": -166.8, "indexed": 157, "n_search": 173, "misorientation_deg": 0.0}
+{"dataset": "mesolite", "seed": 4, "time_s": 41.2, "restarts": 1, "log10p": -166.8, "indexed": 157, "n_search": 173, "misorientation_deg": 0.0}
+{"dataset": "mesolite", "seed": 5, "time_s": 41.5, "restarts": 1, "log10p": -166.8, "indexed": 157, "n_search": 173, "misorientation_deg": 0.0}
+{"dataset": "mesolite", "seed": 6, "time_s": 39.9, "restarts": 1, "log10p": -166.8, "indexed": 157, "n_search": 173, "misorientation_deg": 0.0}
+{"dataset": "mesolite", "seed": 7, "time_s": 41.0, "restarts": 1, "log10p": -166.8, "indexed": 157, "n_search": 173, "misorientation_deg": 0.0}
+{"dataset": "mesolite", "seed": 8, "time_s": 41.2, "restarts": 1, "log10p": -166.8, "indexed": 157, "n_search": 173, "misorientation_deg": 0.0}
+{"dataset": "mesolite", "seed": 9, "time_s": 41.2, "restarts": 1, "log10p": -166.8, "indexed": 157, "n_search": 173, "misorientation_deg": 0.0}
+{"dataset": "mesolite", "seed": 10, "time_s": 41.9, "restarts": 1, "log10p": -166.8, "indexed": 157, "n_search": 173, "misorientation_deg": 0.0}

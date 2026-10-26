@@ -1,0 +1,6 @@
+check: recomputed local-8 kf matches saved: True
+{"set": "local8_auto", "seed": 1, "n_peaks": 282, "n_search": 191, "time_s": 78, "search_0.2": "67 vs 27 (log10p -10.5)", "search_0.35": "124 vs 67 (log10p -9.5)", "ref282_0.2": "128 vs 62 (log10p -12.8)"}
+{"set": "local8_auto", "seed": 2, "n_peaks": 282, "n_search": 191, "time_s": 76, "search_0.2": "68 vs 27 (log10p -10.9)", "search_0.35": "128 vs 67 (log10p -10.6)", "ref282_0.2": "126 vs 62 (log10p -12.2)"}
+{"set": "matched5_auto", "seed": 1, "n_peaks": 833, "n_search": 351, "time_s": 101, "search_0.2": "112 vs 53 (log10p -12.0)", "search_0.35": "227 vs 132 (log10p -13.3)", "ref282_0.2": "126 vs 62 (log10p -12.2)"}
+{"set": "matched5_auto", "seed": 2, "n_peaks": 833, "n_search": 351, "time_s": 102, "search_0.2": "113 vs 53 (log10p -12.4)", "search_0.35": "226 vs 132 (log10p -13.1)", "ref282_0.2": "123 vs 62 (log10p -11.2)"}
+DONE
